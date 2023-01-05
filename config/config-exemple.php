@@ -1,8 +1,8 @@
 <?php
 $config=[
-    'dbserver' =>'',
-    'dblogin' => '',
-    'dbpassword' => '',
-    'dbname' => '',
+    'dbserver' =>'localhost',
+    'dblogin' => 'login8065',
+    'dbpassword' => 'fWCxcJPPgWqAYEy',
+    'dbname' => 'simpléduc',
 ];
 ?>
