@@ -1,0 +1,24 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Page ajouter Entreprise
+{% endblock %}
+
+{% block content %}
+<div class="bg-light rounded px-3 py-3">
+    <div class="container">
+      <h1>Ajouter un Entreprise</h1>
+    </div>
+  </div>
+  <div class="container mb-5">
+      
+    <form action="index.php?page=addEntreprise" method="POST">
+    <div class="mb-3">
+        <label for="EntrepriseLabel" class="form-label"> Nom</label>
+        <input type="text" class="from-control" id="EntrepriseLabel" name="EntrepriseLabel">
+    </div>
+    <button type="submit" class="btn btn-primary" name="btnAddEntreprise">Ajouter un entreprise</button>
+    </form>
+</div>
+
+{% endblock %}
