@@ -1,6 +1,6 @@
 <?php 
 
-function addcontratController($twig,$db){
+function addContratController($twig,$db){
     include_once '../src/model/ProductModel.php';  ##on inclut pour apres
     
     $contacts= getAllContacts($db);
@@ -20,7 +20,7 @@ function addcontratController($twig,$db){
             $Contact=$_POST['Contact'];
             $Entreprise=$_POST['Entreprise'];
 
-            var_dump($Contact);
+            #var_dump($Contact);
 
             saveContrat($db,$DateSignature,$CoutGlobal,$DateFin,$DateDebut,$Contact,$Entreprise);
         }else{
@@ -31,7 +31,7 @@ function addcontratController($twig,$db){
             }
         }
     }
-    echo $twig -> render("addcontrat.html.twig", ['entreprises' => $entreprises, 'contacts' => $contacts]);
+    echo $twig -> render("addContrat.html.twig", ['entreprises' => $entreprises, 'contacts' => $contacts]);
 }
 
 ?>

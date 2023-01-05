@@ -7,7 +7,12 @@ function addContactController($twig,$db){
     if (isset($_POST['btnAddContact']) && (isset($_POST['Personne']))) {
         $IDPersonne = $_POST['Personne'];
         saveContact($db,$IDPersonne);
-    }   
+        
+        echo $twig ->render ('home.html.twig',[]);
+    }
+    
+    if(!isset($_POST['btnAddContact'])){
+        echo $twig ->render ('addContact.html.twig',["personnes" => $personnes]);
+    }
 
-    echo $twig ->render ('addContact.html.twig',["personnes" => $personnes]);
 }

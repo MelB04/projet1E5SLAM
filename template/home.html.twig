@@ -9,5 +9,34 @@
         <h1 class="text-dark">
             Simpleduc
         </h1>
+        <h2 class="text-dark py-4">Affichage des Contrats sous forme de Tableau</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">DateSignature</th>
+                <th scope="col">Cout Global</th>
+                <th scope="col">Date de Début</th>
+                <th scope="col">Date de Fin</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Entreprise</th>
+                <th scope="col">Modifier ?</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for contrat in contrats %}
+                <tr>
+                    <th scope="row">{{ contrat.IDContrat }}</th>
+                    <td>{{ contrat.DateSignature }}</td>
+                    <td>{{ contrat.CoutGlobal }}</td>
+                    <td>{{ contrat.DateDebut }}</td>
+                    <td>{{ contrat.DateFin }}</td>
+                    <td>{{ contrat.NomContact }}</td>
+                    <td>{{ contrat.NomEntreprise }}</td>
+                    <td><a href="?page=updateContrat&id={{ contrat.IDContrat }}">Modifier ?</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}
