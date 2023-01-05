@@ -3,6 +3,7 @@
         'home' => 'homeController',
         'erreurpdo' => 'erreurpdoController',
         'addcontrat' => 'addcontratController',
-        "addEntreprise" => "addEntrepriseController"
+        "addEntreprise" => "addEntrepriseController",
+        'addContact' => 'addContactController',
     ]; //fin de tableau
 ?>

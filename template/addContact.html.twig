@@ -1,0 +1,30 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Page ajouter Contact
+{% endblock %}
+
+{% block content %}
+<div class="bg-light rounded px-3 py-3">
+    <div class="container">
+      <h1>Ajouter un Contact</h1>
+    </div>
+  </div>
+  <div class="container mb-5">
+      
+    <form action="index.php?page=addContact" method="POST">
+        <div class="mb-3">
+            <label for="ContactLabel" class="form-label">Choisir un Contact :</label>
+            <div>
+                <select name="Personne" size="1">                    
+                    {% for personne in personnes %}
+                        <option value={{ personne.IDPersonne }}>{{ personne.Nom }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    <button type="submit" class="btn btn-primary" name="btnAddContact">Ajouter un Contact</button>
+    </form>
+</div>
+
+{% endblock %}
