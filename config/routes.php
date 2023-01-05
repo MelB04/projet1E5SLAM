@@ -1,5 +1,7 @@
 <?php
     $routes = [ 
-       'home' => 'homeController' 
+        'home' => 'homeController',
+        'erreurpdo' => 'erreurpdoController',
+        'addcontrat' => 'addcontratController',
     ]; //fin de tableau
 ?>

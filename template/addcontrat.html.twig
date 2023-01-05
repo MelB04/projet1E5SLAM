@@ -1,0 +1,54 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Page ajouter Contrat
+{% endblock %}
+
+{% block content %}
+<div class="bg-light rounded px-3 py-3">
+  <div class="container">
+    <h1>Ajouter un Contrat</h1>
+  </div>
+</div>
+<div class="container mb-5">
+  <form action="index.php?page=addcontrat" method="POST"> <!-- je veux que tu ailles sur ma route addProduct en méthode POST => utilisation de la variable globale $_POST-->
+    <div class="mb-3">
+      <label for="DateSignature" class="form-label">Date de Signature</label>
+      <input type="date" class="form-control" id="DateSignature" name="DateSignature" value="">
+    </div>
+    <div class="mb-3">
+      <label for="CoutGlobal" class="form-label">Cout Global</label>
+      <input type="number" class="form-control" id="CoutGlobal" name="CoutGlobal" step="0.01">
+    </div>
+    <div class="mb-3">
+      <label for="DateDebut" class="form-label">Date de Début</label>
+      <input type="date" class="form-control" id="DateDebut" name="DateDebut" value="">
+    </div>
+    <div class="mb-3">
+        <label for="DateFin" class="form-label">Date de Fin</label>
+        <input type="date" class="form-control" id="DateFin" name="DateFin" value="">
+    </div>
+    <div class="mb-3">
+        <label for="Contact" class="form-label">Choisir un Contact :</label>
+        <div>
+            <select name="Contact" size="1">                    
+                {% for contact in contacts %}
+                    <option value={{ contact.idPersonne }}>{{ contact.Nom }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="Entreprise" class="form-label">Choisir une entreprise :</label>
+        <div>
+            <select name="Entreprise" size="1">                    
+                {% for entreprise in entreprises %}
+                    <option value={{ entreprise.IDEntre }}>{{ entreprise.Nom }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" name="btnAddContrat">Ajouter un Contrat</button> <!-- On va vouloir détecter quand on appuie-->
+  </form>
+</div>
+{% endblock %}
