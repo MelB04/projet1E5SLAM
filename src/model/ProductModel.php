@@ -32,4 +32,15 @@
     }
 
 
+    function saveEntreprise($db,$nom){
+        echo "INSERT INTO Entreprise_Cliente(Nom) 
+        VALUES ($nom)";
+        
+        $query = $db -> prepare("INSERT INTO Entreprise_Cliente(Nom) 
+                                VALUES (:nom)");
+        $query -> execute([
+            'nom' => $nom,    
+        ]);
+    }
+
 ?>
