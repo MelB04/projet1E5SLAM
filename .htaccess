@@ -1,0 +1,9 @@
+###On veut que l'utilisateur soit rediriger vers index.php donc Tu vas dans le fichier public/.htaccess et tu lis le contenu du fichier
+### mod_rewrite : activation du systeme d'ecriture
+### RewriteRule ^(.*)$ public/$1 [L]: tous les urls comme ca tu les rediriges vers public
+
+
+<IfModule mod_rewrite.c> 
+    RewriteEngine On    
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

@@ -1,0 +1,11 @@
+### mod_rewrite : activation du systeme d'ecriture
+### RewriteCond %{REQUEST_FILENAME} !-f #si la requete c'est pas un fichier
+### RewriteCond %{REQUEST_FILENAME} !-d #si la requete c'est pas un dossier
+### rewriterule : tu rediriges vers index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On 
+    RewriteCond %{REQUEST_FILENAME} !-f 
+    RewriteCond %{REQUEST_FILENAME} !-d 
+    RewriteRule ^ index.php [L] 
+</IfModule>

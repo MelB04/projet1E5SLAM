@@ -1,0 +1,17 @@
+{
+    "name": "login8057/shop",
+    "autoload": {
+        "psr-4": {
+            "Login8057\\Shop\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mélanie Boudry",
+            "email": "melanie.boudry@epsi.fr"
+        }
+    ],
+    "require": {
+        "twig/twig": "^3.4"
+    }
+}
