@@ -6,7 +6,7 @@ function delContratController($twig,$db){
     $contrats= getAllContrats($db);
     #var_dump($contrats);
     
-    if(isset($_POST['Contrat']) && isset($_POST['btnDelContrat'])){ ##determiner si le tableau est definit btnAddProduct nom du bouton on regarde s'il existe lors d'un envoi de formulaire
+    if(isset($_POST['Contrat']) && isset($_POST['btnDelContrat'])){
         $idContrat=$_POST['Contrat'];
         delContrat($db,$idContrat);
         $contrats=getAllContrats($db);

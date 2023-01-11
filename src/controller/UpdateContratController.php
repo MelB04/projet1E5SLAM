@@ -12,8 +12,8 @@ function updateContratController($twig,$db){
     $entreprises = getAllEntreprises($db);
     #var_dump($entreprises);
     
-    if(isset($_POST['btnUpdContrat'])){ ##determiner si le tableau est definit btnAddProduct nom du bouton on regarde s'il existe lors d'un envoi de formulaire
-        $IDContrat = $_GET['id']; ##htmlspecialchars eviter d'executer du cote malvaillant
+    if(isset($_POST['btnUpdContrat'])){ 
+        $IDContrat = $_GET['id']; 
         $DateSignature = htmlspecialchars($_POST['DateSignature']);
         $CoutGlobal = htmlspecialchars($_POST['CoutGlobal']);
         $DateFin = htmlspecialchars($_POST['DateFin']);

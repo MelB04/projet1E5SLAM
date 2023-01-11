@@ -8,7 +8,7 @@ function addContratController($twig,$db){
     $entreprises = getAllEntreprises($db);
     #var_dump($entreprises);
     
-    if((isset($_POST['DateSignature'])) && (isset($_POST['CoutGlobal'])) && (isset($_POST['DateFin'])) && (isset($_POST['DateDebut'])) && (isset($_POST['Entreprise'])) && (isset($_POST['Contact'])) && (isset($_POST['btnAddContrat']))){ ##determiner si le tableau est definit btnAddProduct nom du bouton on regarde s'il existe lors d'un envoi de formulaire
+    if((isset($_POST['DateSignature'])) && (isset($_POST['CoutGlobal'])) && (isset($_POST['DateFin'])) && (isset($_POST['DateDebut'])) && (isset($_POST['Entreprise'])) && (isset($_POST['Contact'])) && (isset($_POST['btnAddContrat']))){ 
         if((!empty($_POST['DateSignature'])) && (!empty($_POST['CoutGlobal'])) && (!empty($_POST['DateFin'])) && (!empty($_POST['DateDebut'])) && (!empty($_POST['Contact'])) && (!empty($_POST['Entreprise']))){
             $DateSignature = htmlspecialchars($_POST['DateSignature']);
             $CoutGlobal = htmlspecialchars($_POST['CoutGlobal']);

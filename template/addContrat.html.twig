@@ -11,7 +11,7 @@
   </div>
 </div>
 <div class="container mb-5">
-  <form action="index.php?page=addContrat" method="POST"> <!-- je veux que tu ailles sur ma route addProduct en méthode POST => utilisation de la variable globale $_POST-->
+  <form action="index.php?page=addContrat" method="POST">
     <div class="mb-3">
       <label for="DateSignature" class="form-label">Date de Signature</label>
       <input type="date" class="form-control" id="DateSignature" name="DateSignature" value="">
@@ -48,7 +48,7 @@
             </select>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary" name="btnAddContrat">Ajouter un Contrat</button> <!-- On va vouloir détecter quand on appuie-->
+    <button type="submit" class="btn btn-primary" name="btnAddContrat">Ajouter un Contrat</button>
   </form>
 </div>
 {% endblock %}
