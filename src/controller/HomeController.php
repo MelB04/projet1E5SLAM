@@ -12,8 +12,9 @@ function homeController($twig,$db){
     #var_dump ($Indices);
     #var_dump ($entreprises);
 
+    $devs=getAllDev($db);
 
-    echo $twig -> render("home.html.twig", ['contrats' => $contrats, 'entreprises' =>$entreprises, 'contacts' => $contacts, 'Indices' =>$Indices]);
+    echo $twig -> render("home.html.twig", ['contrats' => $contrats, 'entreprises' =>$entreprises, 'contacts' => $contacts, 'devs' => $devs, 'Indices' =>$Indices]);
 }
 
 ?>
