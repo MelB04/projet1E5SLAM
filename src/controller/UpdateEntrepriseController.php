@@ -11,7 +11,7 @@ function updateContratController($twig,$db){
 
     $entreprises = getAllEntreprises($db);
     #var_dump($entreprises);
-    
+
     if(isset($_POST['btnUpdContrat'])){ 
         $IDContrat = $_GET['id']; 
         $DateSignature = htmlspecialchars($_POST['DateSignature']);

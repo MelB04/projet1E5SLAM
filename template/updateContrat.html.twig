@@ -7,10 +7,15 @@
 {% block content %}
 <div class="bg-light rounded px-3 py-3">
   <div class="container">
-    <h1>Modifier le Contrat n° {{ updateContrat.IDContrat }}</h1>
+    {% if valeurnull == true %}
+      <h1>L'élèment n'existe plus</h1>
+    {% else %}
+      <h1>Modifier le Contrat n° {{ updateContrat.IDContrat }}</h1>
+    {% endif %}
   </div>
 </div>
-<div class="container mb-5">   
+<div class="container mb-5">
+  {% if valeurnull == false %}
   <form action="?page=updateContrat&id={{ updateContrat.IDContrat }}" method="POST">
     <div class="mb-3">
       <label for="DateSignature" class="form-label">Date de Signature</label>
@@ -57,6 +62,8 @@
         </div>
     </div>
     <button type="submit" class="btn btn-primary" name="btnUpdContrat">Modifier le Contrat n° {{ updateContrat.IDContrat }}</button> <!-- On va vouloir détecter quand on appuie-->
-  </form>       
+  </form> 
+	{% endif %}
+      
 </div>
 {% endblock %}
