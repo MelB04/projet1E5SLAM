@@ -1,0 +1,38 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Page ajouter Développeur
+{% endblock %}
+
+{% block content %}
+<div class="bg-light rounded px-3 py-3">
+  <div class="container">
+    <h1>Ajouter un Développeur</h1>
+  </div>
+</div>
+<div class="container mb-5">
+  <form action="index.php?page=addDev" method="POST">
+    <div class="mb-3">
+        <label for="IDPersonne" class="form-label">Choisir une personne :</label>
+        <div>
+            <select class="form-select" name="IDPersonne" size="1">                    
+                {% for personne in personnes %}
+                    <option value={{ personne.IDPersonne }}>{{ personne.Nom }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="IDIndice" class="form-label">Choisir un indice :</label>
+        <div>
+            <select class="form-select" name="IDIndice" size="1">                    
+                {% for indice in indices %}
+                    <option value={{ indice.IDIndice }}>{{ indice.CoutHoraire }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" name="btnAddDev">Ajouter un développeur</button>
+  </form>
+</div>
+{% endblock %}

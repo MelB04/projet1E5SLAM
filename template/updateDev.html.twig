@@ -1,0 +1,53 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Page Modification Contrat
+{% endblock %}
+
+{% block content %}
+<div class="bg-light rounded px-3 py-3">
+  <div class="container">
+    {% if devnull == true %}
+      <h1>L'élément n'existe plus</h1>
+    {% else %}
+      <h1>Modifier les informations du développeur {{ updateDev.NomPersonne }}</h1>
+    {% endif %}
+  </div>
+</div>
+<div class="container mb-5">
+  {% if devnull == false %}
+  <form action="index.php?page=updateDev&id={{ updateDev.IDPersonne }}" method="POST">
+    <div class="mb-3">
+        <label for="IDPersonne" class="form-label">Choisir une personne :</label>
+        <div>
+            <select class="form-select" name="IDPersonne" size="1">                    
+                {% for personne in personnes %}
+                  {% if personne.Nom == updateDev.NomPersonne %}
+                    <option value={{ personne.IDPersonne }} selected>{{ personne.Nom }}</option>
+                  {% else %}
+                    <option value={{ personne.IDPersonne }} >{{ personne.Nom }}</option>
+                  {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="IDIndice" class="form-label">Choisir un indice :</label>
+        <div>
+            <select class="form-select" name="IDIndice" size="1">                    
+                {% for indice in indices %}
+                    {% if indice.IDIndice == updateDev.IDIndice %}
+                      <option value={{ indice.IDIndice }} selected>{{ indice.CoutHoraire }}</option>
+                    {% else %}
+                      <option value={{ indice.IDIndice }} >{{ indice.CoutHoraire }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" name="btnUpdDev">Modifier un développeur</button>
+  </form>
+	{% endif %}
+      
+</div>
+{% endblock %}

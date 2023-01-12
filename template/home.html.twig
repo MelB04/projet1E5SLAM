@@ -84,5 +84,30 @@
                 {% endfor %}
             </tbody>
         </table>
+
+
+        <h2 class="text-dark py-4">Affichage des Développeurs sous forme de Tableau</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Indice</th>
+                <th scope="col">Modifier ?</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for dev in devs %}
+                <tr>
+                    <th scope="row">{{ dev.IDPersonne }}</th>
+                    <td>{{ dev.NomPersonne }}</th>
+                    <td>{{ dev.CoutHoraire }}</td>
+                    <td><a href="?page=updateDev&id={{ dev.IDPersonne }}">Modifier ?</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
     </div>
 {% endblock %}

@@ -129,4 +129,55 @@
         ]);
     }
 
+
+    function getAllIndice($db){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
+        $query = $db -> prepare("SELECT IDIndice, CoutHoraire ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+                                FROM Indice");
+        $query -> execute([]);
+        $indices = $query->fetchAll(); ##recuperer les products, stoocker le resultat du query. que les resultats . plusieurs resultat = fetchAll
+        return $indices;
+    }
+  
+    
+    function getAllPersonnesDev($db){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
+        $query = $db -> prepare("SELECT IDPersonne, Nom ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+                                FROM Personne");
+        $query -> execute([]);
+        $personnes = $query->fetchAll(); ##recuperer les products, stoocker le resultat du query. que les resultats . plusieurs resultat = fetchAll
+        return $personnes;
+    }
+
+    function saveDev($db,$IDPersonne,$IDIndice){        
+        $query = $db -> prepare("INSERT INTO Dev(IDPersonne,IDIndice) 
+                                VALUES (:IDPersonne, :IDIndice)");
+        $query -> execute([
+            'IDPersonne' => $IDPersonne,    
+            'IDIndice' => $IDIndice,    
+        ]);
+    }
+    
+    function getAllDev($db){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup        
+        $query = $db -> prepare("SELECT Dev.IDPersonne, Personne.Nom AS NomPersonne, Indice.CoutHoraire AS CoutHoraire ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+                                FROM Dev
+                                INNER JOIN Indice ON Indice.IDIndice = Dev.IDIndice
+                                INNER JOIN Personne ON Personne.IDPersonne = Dev.IDPersonne");  ## FROM dans la table .."); ## instruction quand id est egale aux idproducts, :id = peut etre modifier. les paramètres principaux SQL doivent etre en maj
+        $query -> execute([]);
+        $Dev = $query->fetchAll(); ##recuperer les products, stoocker le resultat du query. que les resultats . plusieurs resultat = fetchAll
+        return $Dev;
+    }
+    
+    function labelOneDev($db,$idDev){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
+        $query = $db -> prepare("SELECT Dev.IDPersonne, Personne.Nom AS NomPersonne, Indice.IDIndice AS IDIndice, Indice.CoutHoraire AS CoutHoraire ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+                                FROM Dev
+                                INNER JOIN Indice ON Indice.IDIndice = Dev.IDIndice
+                                INNER JOIN Personne ON Personne.IDPersonne = Dev.IDPersonne
+                                WHERE Dev.IDPersonne = :IDDev"); 
+        $query -> execute([
+            'IDDev' => $idDev  ##remplace la valeur, la clé 'id' celui de la requete, je veux que dans cette clé : tu stocke la valeur que je vais te donner action utilisateur. selectionner dans le site 
+        ]);
+        $OneDev = $query->fetch(); ##recuperer les products, stoocker le resultat du query. que les resultats . un seul resultat = fetch
+        return $OneDev;
+    }
+
+    
 ?>
