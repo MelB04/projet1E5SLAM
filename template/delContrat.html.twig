@@ -26,5 +26,22 @@
             <button type="submit" class="btn btn-primary" name="btnDelContrat" href="">Supprimer un Contrat</button>
         </div> 
     </form>
+
+
+    <!--<form action="index.php?page=delContrat" method="POST">
+        <div class="mb-3">
+            <label for="ContratLabel" class="form-label">Choisir plusieurs Contrats à supprimer :</label>
+            <div>
+                <select name="Contrat" size="1">                    
+                    {% for contrat in contrats %}
+                        <option value={{ contrat.IDContrat }}>{{ contrat.DateSignature }} avec {{ contrat.NomContact }} comme contact pour {{ contrat.NomEntreprise }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div align="center">
+            <button type="submit" class="btn btn-primary" name="btnDelContrat" href="">Supprimer un Contrat</button>
+        </div> 
+    </form>-->
 </div>
 {% endblock %}

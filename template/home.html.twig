@@ -27,10 +27,10 @@
                 {% for contrat in contrats %}
                 <tr>
                     <th scope="row">{{ contrat.IDContrat }}</th>
-                    <td>{{ contrat.DateSignature }}</td>
+                    <td>{{ contrat.DateSignature  | date("d-m-Y") }}</td>
                     <td>{{ contrat.CoutGlobal }}</td>
-                    <td>{{ contrat.DateDebut }}</td>
-                    <td>{{ contrat.DateFin }}</td>
+                    <td>{{ contrat.DateDebut  | date("d-m-Y") }}</td>
+                    <td>{{ contrat.DateFin  | date("d-m-Y")}}</td>
                     <td>{{ contrat.NomContact }}</td>
                     <td>{{ contrat.NomEntreprise }}</td>
                     <td><a href="?page=updateContrat&id={{ contrat.IDContrat }}">Modifier ?</a></td>
