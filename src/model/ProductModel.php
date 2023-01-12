@@ -96,7 +96,6 @@
         ]);
     }
 
-<<<<<<< HEAD
     function labelOneEntreprise($db,$idEntreprise){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
         $query = $db -> prepare("SELECT IDEntre, Nom FROM Entreprise_Cliente where IDEntre=:IDentreprise"); 
         $query -> execute([
@@ -110,8 +109,6 @@
 
 
 
-=======
->>>>>>> 43be76401aa69f2a783da3538ade77826ea3d9da
     function getAllPersonnes($db){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
         $query = $db -> prepare("SELECT IDPersonne, Nom ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
                                 FROM Personne
@@ -131,5 +128,35 @@
             'IDPersonne' => $IDPersonne,    
         ]);
     }
+
+    function saveIndice($db,$Indice){
+        $query = $db -> prepare("INSERT INTO Indice(CoutHoraire) 
+                                VALUES (:CoutHoraire)");
+        $query -> execute([
+            'CoutHoraire' => $Indice,    
+        ]);
+    }
+
+
+    function getAllIndices($db){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
+        $query = $db -> prepare("SELECT IDIndice, CoutHoraire ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+                                FROM Indice");  ## FROM dans la table .."); ## instruction quand id est egale aux idproducts, :id = peut etre modifier. les paramètres principaux SQL doivent etre en maj
+        $query -> execute([]);
+        $Indices = $query->fetchAll(); ##recuperer les products, stoocker le resultat du query. que les resultats . plusieurs resultat = fetchAll
+        return $Indices;
+    }
+
+    function labelOneIndice($db,$idIndice){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
+        $query = $db -> prepare("SELECT IDIndice, CoutHoraire 
+                                FROM Indice 
+                                where IDIndice=:IDIndice"); 
+        $query -> execute([
+            'IDIndice' => $idIndice  ##remplace la valeur, la clé 'id' celui de la requete, je veux que dans cette clé : tu stocke la valeur que je vais te donner action utilisateur. selectionner dans le site 
+        ]);
+        $OneIndice = $query->fetch(); ##recuperer les products, stoocker le resultat du query. que les resultats . un seul resultat = fetch
+        return $OneIndice;
+    }
+
+    
 
 ?>

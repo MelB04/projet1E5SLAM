@@ -84,5 +84,25 @@
                 {% endfor %}
             </tbody>
         </table>
+
+        <h2 class="text-dark py-4">Affichage des Indices sous forme de Tableau</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Cout Horaires</th>
+                <th scope="col">Modifier ?</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for Indice in Indices %}
+                <tr>
+                    <th scope="row">{{ Indice.IDIndice }}</th>
+                    <td>{{ Indice.CoutHoraire }}</td>
+                    <td><a href="?page=updateIndice&id={{ Indice.IDIndice }}">Modifier ?</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}

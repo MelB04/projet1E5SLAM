@@ -13,50 +13,7 @@
 <div class="container mb-5">   
   <form action="?page=updateContact&id={{ updateContact.IDContact }}" method="POST">
     <div class="mb-3">
-      <label for="DateSignature" class="form-label">Date de Signature</label>
-      <input type="date" class="form-control" id="DateSignature" name="DateSignature" value="{{ updateContrat.DateSignature }}">
+      <label for="Nom du Contact" class="form-label">Nom du Contact</label>
+      <input type="nom" class="form-control" id="Nom du Contact" name="Nom du Contact" value="{{ updateContact.IDContact }}">
     </div>
-    <div class="mb-3">
-      <label for="CoutGlobal" class="form-label">Cout Global</label>
-      <input type="number" class="form-control" id="CoutGlobal" name="CoutGlobal" step="0.01" value="{{ updateContrat.CoutGlobal }}">
-    </div>
-    <div class="mb-3">
-      <label for="DateDebut" class="form-label">Date de Début</label>
-      <input type="date" class="form-control" id="DateDebut" name="DateDebut" value="{{ updateContrat.DateDebut }}">
-    </div>
-    <div class="mb-3">
-        <label for="DateFin" class="form-label">Date de Fin</label>
-        <input type="date" class="form-control" id="DateFin" name="DateFin" value="{{ updateContrat.DateFin }}">
-    </div>
-    <div class="mb-3">
-        <label for="Contact" class="form-label">Choisir un Contact :</label>
-        <div>
-            <select class="form-select" name="Contact" size="1">                    
-                {% for contact in contacts %}
-                  {% if contact.IDPersonne == updateContrat.IDPersonne %}
-                    <option value={{ contact.IDPersonne }} selected>{{ contact.Nom }}</option>
-                  {% else %}
-                    <option value={{ contact.IDPersonne }} >{{ contact.Nom }}</option>
-                  {% endif %}
-                {% endfor %}
-            </select>
-        </div>
-    </div>
-    <div class="mb-3">
-        <label for="Entreprise" class="form-label">Choisir une entreprise :</label>
-        <div>
-            <select class="form-select" name="Entreprise" size="1">                    
-                {% for entreprise in entreprises %}
-                  {% if contact.IDEntre == updateContrat.IDEntre %}
-                    <option value={{ entreprise.IDEntre }} selected>{{ entreprise.Nom }}</option>
-                  {% else %}
-                    <option value={{ entreprise.IDEntre }}>{{ entreprise.Nom }}</option>
-                  {% endif %}
-                {% endfor %}
-            </select>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary" name="btnUpdContrat">Modifier le Contrat n° {{ updateContrat.IDContrat }}</button> <!-- On va vouloir détecter quand on appuie-->
-  </form>       
-</div>
 {% endblock %}
