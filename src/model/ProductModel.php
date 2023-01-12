@@ -83,7 +83,7 @@
         ]);
     }
     
-    
+#entreprises  
 
     function saveEntreprise($db,$nom){
         echo "INSERT INTO Entreprise_Cliente(Nom) 
@@ -96,6 +96,14 @@
         ]);
     }
 
+    function labelOneEntreprise($db,$idEntreprise){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
+        $query = $db -> prepare("SELECT IDEntre, Nom FROM Entreprise_Cliente where IDEntre=:IDentreprise"); 
+        $query -> execute([
+            'IDentreprise' => $idEntreprise  ##remplace la valeur, la clé 'id' celui de la requete, je veux que dans cette clé : tu stocke la valeur que je vais te donner action utilisateur. selectionner dans le site 
+        ]);
+        $OneEntreprise = $query->fetch(); ##recuperer les products, stoocker le resultat du query. que les resultats . un seul resultat = fetch
+        return $OneEntreprise;
+    }
 
 
 
@@ -120,4 +128,5 @@
             'IDPersonne' => $IDPersonne,    
         ]);
     }
+
 ?>

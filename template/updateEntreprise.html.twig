@@ -1,0 +1,30 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Page Modification Entreprise
+{% endblock %}
+
+{% block content %}
+<div class="bg-light rounded px-3 py-3">
+  <div class="container">
+
+    {% if entreprisenull == true %}
+      <h1>L'entreprise n'existe pas</h1>
+    {% else %}
+      <h1>Modifier l'entreprise</h1>
+    {% endif %}
+  </div>
+</div>
+<div class="container mb-5"> 
+  {% if entreprisenull == false %}
+  
+  <form action="index.php?page=updateEntreprise&id={{ nomEntreprise.IDEntre }}" method="POST">
+    <div class="mb-3">
+        <label for="EntrepriseLabel" class="form-label"> Nom</label>
+        <input type="text" class="from-control" id="EntrepriseLabel" name="EntrepriseLabel" value="{{nomEntreprise.Nom}}" >
+    </div>
+    <button type="submit" class="btn btn-primary" name="btnEntreprise"> modifier une entreprise</button>
+    </form>
+  {% endif %}       
+</div>
+{% endblock %}
