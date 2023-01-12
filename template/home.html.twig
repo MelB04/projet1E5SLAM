@@ -39,7 +39,27 @@
             </tbody>
         </table>
 
-
+        <h2 class="text-dark py-4">Affichage des Personnes sous forme de Tableau</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Modifier ?</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for personne in Personnes %}
+                <tr>
+                    <th scope="row">{{ personne.IDPersonne }}</th>
+                    <td>{{ personne.Nom }}</td>
+                    <td>{{ personne.Prenom }}</td>
+                    <td><a href="?page=updatePersonne&id={{ personne.IDPersonne }}">Modifier ?</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
 
         <!---->

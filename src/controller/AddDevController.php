@@ -3,8 +3,8 @@
 function addDevController($twig,$db){
     include_once '../src/model/ProductModel.php';  ##on inclut pour apres
     
-    $indices=getAllIndice($db);
-    $personnes= getAllPersonnesDev($db);
+    $indices=getAllIndices($db);
+    $personnes= getAllPersonnes($db);
     
     if((isset($_POST['IDPersonne'])) && (isset($_POST['IDIndice'])) && (isset($_POST['btnAddDev']))){ 
         $IDIndice=$_POST['IDIndice'];

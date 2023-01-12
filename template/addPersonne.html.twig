@@ -1,0 +1,27 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Page ajouter Personne
+{% endblock %}
+
+{% block content %}
+<div class="bg-light rounded px-3 py-3">
+  <div class="container">
+    <h1>Ajouter une Personne</h1>
+  </div>
+</div>
+<div class="container mb-5">
+  <form action="index.php?page=addPersonne" method="POST">
+    <div class="mb-3">
+      <label for="NomPersonne" class="form-label">Nom de la personne</label>
+      <input type="text" class="form-control" id="NomPersonne" name="NomPersonne" value="">
+    </div>
+    <div class="mb-3">
+        <label for="PrenomPersonne" class="form-label">Prénom de la personne</label>
+        <input type="text" class="form-control" id="PrenomPersonne" name="PrenomPersonne" value="">
+    </div>
+
+    <button type="submit" class="btn btn-primary" name="btnAddPersonne">Ajouter une Personne</button>
+  </form>
+</div>
+{% endblock %}

@@ -5,15 +5,20 @@
         'addContrat' => 'addContratController',
         'addDev' => 'addDevController',
 
+        'addPersonne' => 'addPersonneController',
+        'updatePersonne' => 'updatePersonneController',
+        'delPersonne' => 'delPersonneController',
+
         'delContrat' => 'delContratController',
         'updateContrat' => 'updateContratController',
         "addEntreprise" => "addEntrepriseController",
         'addContact' => 'addContactController',
-        "updateEntreprise" => "UpdateEntrepriseController",
+        "updateEntreprise" => "updateEntrepriseController",
         "addIndice" => "addIndiceController",
         "updateIndice" =>"updateIndiceController",
-        "updateDev" => "UpdateDevController",
-        "updateContact" => "UpdateContactController",
+        "updateDev" => "updateDevController",
+        "delDev" => "delDevController",
+        "updateContact" => "updateContactController",
         "addOutil"=> "addOutilController",
         "updateOutil"  => "updateOutilController",
         "afficherOneEntreprise" => "afficherOneEntrepriseController"

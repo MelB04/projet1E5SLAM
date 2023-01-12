@@ -8,8 +8,8 @@ function updateDevController($twig,$db){
     $oneDev=labelOneDev($db,$idDev);
     var_dump($oneDev);
 
-    $personnes= getAllPersonnesDev($db);
-    $indices= getAllIndice($db);
+    $personnes= getAllPersonnes($db);
+    $indices= getAllIndices($db);
 
     if(isset($_POST['btnUpdDev'])){ 
         $Indice=$_POST['IDIndice'];
