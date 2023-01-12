@@ -53,7 +53,7 @@
     }
     
     function labelOneContrat($db,$idContrat){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
-        $query = $db -> prepare("SELECT Contrat.IDContrat, Contrat.DateSignature, Contrat.CoutGlobal, Contrat.DateDebut, Contrat.DateFin, Entreprise_Cliente.Nom AS NomEntreprise, Personne.Nom AS NomContact, Personne.IDPersonne AS IDPersonne ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+        $query = $db -> prepare("SELECT Contrat.IDContrat, Contrat.DateSignature, Contrat.CoutGlobal, Contrat.DateDebut, Contrat.DateFin, Entreprise_Cliente.IDEntre AS IDEntre, Entreprise_Cliente.Nom AS NomEntreprise, Personne.Nom AS NomContact, Personne.IDPersonne AS IDPersonne ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
                                 FROM Contrat
                                 INNER JOIN Entreprise_Cliente ON Entreprise_Cliente.IDEntre = Contrat.IDEntre
                                 INNER JOIN Contact ON Contact.IDPersonne = Contrat.IDPersonne 
@@ -106,7 +106,19 @@
     }
 
 
-
+    function afficherOneEntreprise($db,$idEntreprise){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
+        $query = $db -> prepare("SELECT representer.IDEntre, representer.IDPersonne, Entreprise_Cliente.Nom AS NomEntreprise, Personne.Nom AS NomContact
+                                FROM representer 
+                                Inner JOIN Entreprise_Cliente ON Entreprise_Cliente.IDEntre=representer.IDEntre
+                                Inner JOIN Contact ON Contact.IDPersonne=representer.IDPersonne
+                                Inner JOIN Personne ON Contact.IDPersonne=Personne.IDPersonne
+                                where representer.IDEntre=:IDentreprise"); 
+        $query -> execute([
+            'IDentreprise' => $idEntreprise  ##remplace la valeur, la clé 'id' celui de la requete, je veux que dans cette clé : tu stocke la valeur que je vais te donner action utilisateur. selectionner dans le site 
+        ]);
+        $OneEntreprise = $query->fetchAll(); ##recuperer les products, stoocker le resultat du query. que les resultats . un seul resultat = fetch
+        return $OneEntreprise;
+    }
 
 
     function getAllPersonnes($db){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
@@ -129,7 +141,18 @@
         ]);
     }
 
-
+    function labelOneContact($db,$idContact){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
+        $query = $db -> prepare("SELECT Contact.IDPersonne, Personne.Nom AS NomContact, Personne.IDPersonne AS IDPersonne ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+                                FROM Contact
+                                INNER JOIN Personne ON Personne.IDPersonne = Contact.IDPersonne
+                                WHERE Contact.IDPersonne = :IDPersonne"); 
+        $query -> execute([
+            'IDPersonne' => $idContact  ##remplace la valeur, la clé 'id' celui de la requete, je veux que dans cette clé : tu stocke la valeur que je vais te donner action utilisateur. selectionner dans le site 
+        ]);
+        $OneContrat = $query->fetch(); ##recuperer les products, stoocker le resultat du query. que les resultats . un seul resultat = fetch
+        return $OneContrat;
+    }
+    
     function saveOutil($db,$libelle,$version){
         $query = $db -> prepare("INSERT INTO Outil(Libelle,Version) 
                                 VALUES (:Libelle,:Version)");
@@ -238,5 +261,16 @@
         return $OneDev;
     }
 
+    
+    function updateDev($db,$Indice,$Personne){
+        
+        $query = $db -> prepare("UPDATE Dev
+                                SET IDIndice=:Indice
+                                WHERE IDPersonne=:Personne");
+        $query -> execute([
+        'Indice' => $Indice , 
+        'Personne' => $Personne,
+        ]);
+    }
     
 ?>

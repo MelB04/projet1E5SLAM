@@ -52,7 +52,7 @@
         <div>
             <select class="form-select" name="Entreprise" size="1">                    
                 {% for entreprise in entreprises %}
-                  {% if contact.IDEntre == updateContrat.IDEntre %}
+                  {% if entreprise.IDEntre == updateContrat.IDEntre %}
                     <option value={{ entreprise.IDEntre }} selected>{{ entreprise.Nom }}</option>
                   {% else %}
                     <option value={{ entreprise.IDEntre }}>{{ entreprise.Nom }}</option>

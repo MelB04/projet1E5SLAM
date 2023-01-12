@@ -52,6 +52,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Entreprise</th>
                 <th scope="col">Modifier ?</th>
+                <th scope="col">Voir ?</th>
               </tr>
             </thead>
             <tbody>
@@ -60,6 +61,7 @@
                     <th scope="row">{{ entreprise.IDEntre }}</th>
                     <td>{{ entreprise.Nom }}</td>
                     <td><a href="?page=updateEntreprise&id={{ entreprise.IDEntre }}">Modifier ?</a></td>
+                    <td><a href="?page=afficherOneEntreprise&id={{ entreprise.IDEntre }}">Voir le contenu ?</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -71,7 +73,7 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nom</th>
-                <th scope="col">Modifier ?</th>
+                <!--<th scope="col">Modifier ?</th>-->
               </tr>
             </thead>
             <tbody>
@@ -79,7 +81,7 @@
                 <tr>
                     <th scope="row">{{ contact.IDPersonne }}</th>
                     <td>{{ contact.Nom }}</td>
-                    <td><a href="?page=updateContact&id={{ contact.IDPersonne }}">Modifier ?</a></td>
+                    <!--<td><a href="?page=updateContact&id={{ contact.IDPersonne }}">Modifier ?</a></td>-->
                 </tr>
                 {% endfor %}
             </tbody>

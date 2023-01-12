@@ -15,7 +15,7 @@
         "updateDev" => "UpdateDevController",
         "updateContact" => "UpdateContactController",
         "addOutil"=> "addOutilController",
-        "updateOutil"  => "updateOutilController"
-
+        "updateOutil"  => "updateOutilController",
+        "afficherOneEntreprise" => "afficherOneEntrepriseController"
     ]; //fin de tableau
 ?>
