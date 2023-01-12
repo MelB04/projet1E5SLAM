@@ -1,22 +1,17 @@
 {% extends "layout.html.twig" %}
 
 {% block title %}
-    Page Modification Contrat
+    Page Modification Contact
 {% endblock %}
 
 {% block content %}
 <div class="bg-light rounded px-3 py-3">
   <div class="container">
-    {% if valeurnull == true %}
-      <h1>L'élèment n'existe plus</h1>
-    {% else %}
-      <h1>Modifier le Contrat n° {{ updateContrat.IDContrat }}</h1>
-    {% endif %}
+    <h1>Modifier le Contact n° {{ updateContact.IDContact }}</h1>
   </div>
 </div>
-<div class="container mb-5">
-  {% if valeurnull == false %}
-  <form action="?page=updateContrat&id={{ updateContrat.IDContrat }}" method="POST">
+<div class="container mb-5">   
+  <form action="?page=updateContact&id={{ updateContact.IDContact }}" method="POST">
     <div class="mb-3">
       <label for="DateSignature" class="form-label">Date de Signature</label>
       <input type="date" class="form-control" id="DateSignature" name="DateSignature" value="{{ updateContrat.DateSignature }}">
@@ -62,8 +57,6 @@
         </div>
     </div>
     <button type="submit" class="btn btn-primary" name="btnUpdContrat">Modifier le Contrat n° {{ updateContrat.IDContrat }}</button> <!-- On va vouloir détecter quand on appuie-->
-  </form> 
-	{% endif %}
-      
+  </form>       
 </div>
 {% endblock %}
