@@ -7,5 +7,6 @@
         'updateContrat' => 'updateContratController',
         "addEntreprise" => "addEntrepriseController",
         'addContact' => 'addContactController',
+        "updateEntreprise" => "UpdateEntrepriseController"
     ]; //fin de tableau
 ?>
