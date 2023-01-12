@@ -84,5 +84,28 @@
                 {% endfor %}
             </tbody>
         </table>
+
+
+        <h2 class="text-dark py-4">Affichage des Outils sous forme de Tableau</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Libelle</th>
+                <th scope="col">Version</th>
+                <th scope="col">Modifier ?</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for outil in outils %}
+                <tr>
+                    <th scope="row">{{ outil.Code }}</th>
+                    <td>{{ outil.Libelle }}</td>
+                    <td>{{ outil.Version }}</td>
+                    <td><a href="?page=updateOutil&id={{ outil.Code }}">Modifier ?</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}

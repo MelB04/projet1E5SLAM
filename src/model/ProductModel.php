@@ -129,4 +129,33 @@
         ]);
     }
 
+
+    function saveOutil($db,$libelle,$version){
+        $query = $db -> prepare("INSERT INTO Outil(Libelle,Version) 
+                                VALUES (:Libelle,:Version)");
+        $query -> execute([
+            'Libelle' => $libelle,    
+            'Version' => $version,    
+        ]);
+    }
+        
+    function GetAllOutil($db){
+        $query = $db -> prepare("SELECT Code, Libelle, Version ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+                                FROM Outil");
+        $query -> execute([]);
+        $outils = $query->fetchAll(); ##recuperer les products, stoocker le resultat du query. que les resultats . plusieurs resultat = fetchAll
+        return $outils;
+    }
+
+
+    function labelOneOutil($db,$idOutil){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
+        $query = $db -> prepare("SELECT Code, Libelle, Version FROM Outil where Code=:Code"); 
+        $query -> execute([
+            'Code' => $idOutil  ##remplace la valeur, la clé 'id' celui de la requete, je veux que dans cette clé : tu stocke la valeur que je vais te donner action utilisateur. selectionner dans le site 
+        ]);
+        $OneOutil = $query->fetch(); ##recuperer les products, stoocker le resultat du query. que les resultats . un seul resultat = fetch
+        return $OneOutil;
+    }
+    
+
 ?>

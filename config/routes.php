@@ -9,5 +9,8 @@
         'addContact' => 'addContactController',
         "updateEntreprise" => "UpdateEntrepriseController",
         "updateContact" => "UpdateContactController",
+        "addOutil"=> "addOutilController",
+        "updateOutil"  => "updateOutilController"
+
     ]; //fin de tableau
 ?>

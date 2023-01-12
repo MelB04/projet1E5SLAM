@@ -11,8 +11,10 @@ function homeController($twig,$db){
 
     #var_dump ($entreprises);
 
+    $outils=GetAllOutil($db);
+    #var_dump ($outils);
 
-    echo $twig -> render("home.html.twig", ['contrats' => $contrats, 'entreprises' =>$entreprises, 'contacts' => $contacts]);
+    echo $twig -> render("home.html.twig", ['contrats' => $contrats, 'entreprises' =>$entreprises, 'contacts' => $contacts, "outils" => $outils]);
 }
 
 ?>

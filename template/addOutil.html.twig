@@ -1,0 +1,28 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Page ajouter un outil
+{% endblock %}
+
+{% block content %}
+<div class="bg-light rounded px-3 py-3">
+    <div class="container">
+      <h1>page des outil</h1>
+    </div>
+  </div>
+  <div class="container mb-5">
+      
+    <form action="index.php?page=addOutil" method="POST">
+    <div class="mb-3">
+        <label for="OutilLabel" class="form-label"> libele</label>
+        <input type="text" class="from-control" id="OutilLabel" name="OutilLabel">
+    </div>
+    <div class="mb-3">
+        <label for="OutilVersion" class="form-label"> version</label>
+        <input type="text" class="from-control" id="OutilVersion" name="OutilVersion">
+    </div>
+    <button type="submit" class="btn btn-primary" name="btnAddOutil">Ajouter un outil</button>
+    </form>
+</div>
+
+{% endblock %}
