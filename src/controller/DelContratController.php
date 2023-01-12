@@ -15,8 +15,9 @@ function delContratController($twig,$db){
     }else if (isset($_POST['btnDelPlusieursContrats'])){
         var_dump($_POST['contrat']);
         if (!empty($_POST['contrat']))
-    
-    
+            foreach ($_POST['contrat'] as $value){
+                delContrat($db,$value);
+            }
     }else{
         echo $twig -> render("delContrat.html.twig", ['contrats' => $contrats]);
     }
