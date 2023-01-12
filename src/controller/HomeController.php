@@ -5,7 +5,11 @@ function homeController($twig,$db){
 
     $contrats=getAllContrats($db);
 
-    echo $twig -> render("home.html.twig", ['contrats' => $contrats]);
+    $entreprises=getAllEntreprises($db);
+
+    var_dump($entreprises);
+
+    echo $twig -> render("home.html.twig", ['contrats' => $contrats, 'entreprises' =>$entreprises]);
 }
 
 ?>

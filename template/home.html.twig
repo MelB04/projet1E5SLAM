@@ -38,5 +38,31 @@
                 {% endfor %}
             </tbody>
         </table>
+
+
+
+
+        <!---->
+
+
+        <h2 class="text-dark py-4">Affichage des entreprises sous forme de Tableau</h2>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Entreprise</th>
+                <th scope="col">Modifier ?</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for entreprise in entreprises %}
+                <tr>
+                    <th scope="row">{{ entreprise.IDEntre }}</th>
+                    <td>{{ entreprise.Nom }}</td>
+                    <td><a href="?page=updateEntreprises&id={{ entreprise.IDEntre }}">Modifier ?</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}

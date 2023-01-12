@@ -82,9 +82,8 @@
         'IDEntre' => $Entreprise,     
         ]);
     }
-
-
-
+    
+    
 
     function saveEntreprise($db,$nom){
         echo "INSERT INTO Entreprise_Cliente(Nom) 
@@ -96,6 +95,10 @@
             'nom' => $nom,    
         ]);
     }
+
+
+
+
 
 
     function getAllPersonnes($db){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
