@@ -3,12 +3,12 @@
 function updateContactController($twig,$db){
     include_once '../src/model/ProductModel.php';  ##on inclut pour apres
 
-    $idPersonne=$_GET['idcontact'];
+    $idPersonne=$_GET['idContact'];
     $updateContact= labelOneContact($db,$idPersonne);
     
     var_dump($updateContact);
     var_dump($_GET['page']);
-    var_dump($_GET['idcontact']);
+    var_dump($_GET['idContact']);
 
     if ($updateContact == NULL){
         $_POST['contactnull']=true;

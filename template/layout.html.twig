@@ -18,15 +18,20 @@
                     <li class="nav-item">
                         <a href="?page=home" class="nav-link">Accueil</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle link-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Gérer les Contrats
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="?page=addContrat">Ajouter un Contrat</a></li>
-                          <li><a class="dropdown-item" href="?page=delContrat">Supprimer un Contrat</a></li>
-                        </ul>
-                      </li>
+
+                    {% if session.login is defined %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle link-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Gérer les Contrats
+                            </a>
+                            <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="?page=addContrat">Ajouter un Contrat</a></li>
+                            <li><a class="dropdown-item" href="?page=delContrat">Supprimer un Contrat</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <a href="?page=login">Se connecter</a>
+                    {% endif %}
                 </ul>
             </div>
         </div>

@@ -1,0 +1,45 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Page Supprimer développeurs
+{% endblock %}
+
+{% block content %}
+<div class="bg-light rounded px-3 py-3">
+    <div class="container">
+        <h1>Supprimer un ou plusieurs développeur(s)</h1>
+    </div>
+</div>
+<div class="container mb-5">
+    <form action="index.php?page=delDev" method="POST">
+        <div class="mb-3">
+            <label for="DevLabel" class="form-label">Choisir un développeur à supprimer :</label>
+            <div>
+                <select name="dev" size="1">                    
+                    {% for dev in devs %}
+                        <option value={{ dev.IDPersonne }}>{{ dev.NomPersonne }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div align="center">
+            <button type="submit" class="btn btn-primary" name="btnDelDev" href="">Supprimer un développeur</button>
+        </div> 
+    </form>
+
+
+    <form action="index.php?page=delDev" method="POST">
+        <div class="mb-3">
+            <label for="ContratLabel" class="form-label">Choisir plusieurs Devéloppeurs à supprimer :</label>
+            <div>
+                {% for dev in devs %}
+                    <input type="checkbox" name="dev[]" value={{ dev.IDPersonne }}>{{ dev.NomPersonne }}<br>
+                {% endfor %}
+            </div>
+        </div>
+        <div align="center">
+            <button type="submit" class="btn btn-primary" name="btnDelPlusieursDevs" href="">Supprimer Plusieurs Développeurs</button>
+        </div> 
+    </form>
+</div>
+{% endblock %}

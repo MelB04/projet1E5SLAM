@@ -18,9 +18,16 @@
         "updateIndice" =>"updateIndiceController",
         "updateDev" => "updateDevController",
         "delDev" => "delDevController",
+
         "updateContact" => "updateContactController",
+        #"deleteContact" => "deleteContactController",
         "addOutil"=> "addOutilController",
         "updateOutil"  => "updateOutilController",
-        "afficherOneEntreprise" => "afficherOneEntrepriseController"
+        "afficherOneEntreprise" => "afficherOneEntrepriseController",
+
+
+
+        'login' => "loginController",
+        'register' => "registerController",
     ]; //fin de tableau
 ?>

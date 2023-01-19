@@ -17,6 +17,7 @@
                 <th scope="col">Entreprise</th>
                 <th scope="col">Contact</th>
                 <th scope="col">Modifier le contact ?</th>
+                <th scope="col">Supprimer le contact ?</th>
               </tr>
             </thead>
             <tbody>
@@ -25,7 +26,8 @@
                     <th scope="row">{{ ligne.IDEntre }}</th>
                     <td>{{ ligne.NomEntreprise }}</td>
                     <td>{{ ligne.NomContact }}</td>
-                    <td><a href="?page=updateContact&identreprise={{ ligne.IDEntre }}&idcontact={{ ligne.IDPersonne }}">Modifier le contact ?</a></td>
+                    <td><a href="?page=updateContact&idEntreprise={{ ligne.IDEntre }}&idContact={{ ligne.IDPersonne }}">Modifier le contact ?</a></td>
+                    <td><a href="?page=deleteContact&idEntreprise={{ ligne.IDEntre }}&idContact={{ ligne.IDPersonne }}">Supprimer le contact ?</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

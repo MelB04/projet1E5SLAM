@@ -10,18 +10,18 @@
     {% if contactnull == true %}
     <h1>L'élément Contact n'existe plus</h1>
     {% else %}
-    <h1>Modifier le Contact n° {{ updateContact.IDContact }}</h1>
+    <h1>Modifier le Contact n° {{ updateContact.IDPersonne }}</h1>
     {% endif %}
   </div>
 </div>
 <div class="container mb-5">   
   {% if contactnull == false %}
-  <form action="?page=updateContact&id={{ updateContact.IDContact }}" method="POST">
+  <form action="?page=updateContact&id={{ updateContact.IDPersonne }}" method="POST">
     <div class="mb-3">
       <label for="Nom du Contact" class="form-label">Nom du Contact</label>
-      <input type="nom" class="form-control" id="Nom du Contact" name="Nom du Contact" value="{{ updateContact.IDContact }}">
+      <input type="nom" class="form-control" id="Nom du Contact" name="Nom du Contact" value="{{ updateContact.NomContact }}">
     </div>
-  <button type="submit" class="btn btn-primary" name="btnUpdContrat">Modifier le Contrat n° {{ updateContrat.IDContrat }}</button> <!-- On va vouloir détecter quand on appuie-->
+  <button type="submit" class="btn btn-primary" name="btnUpdContrat">Modifier le Contrat n° {{ updateContact.IDPersonne }}</button> <!-- On va vouloir détecter quand on appuie-->
   </form> 
   {% endif %}
 </div>
