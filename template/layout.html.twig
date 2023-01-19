@@ -29,8 +29,18 @@
                             <li><a class="dropdown-item" href="?page=delContrat">Supprimer un Contrat</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a href="?page=logout" class="nav-link">Se déconnecter</a>
+                        </li>
+                        
                     {% else %}
-                        <a href="?page=login">Se connecter</a>
+                        <li class="nav-item">
+                            <a href="?page=login" class="nav-link">Se connecter</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a href="?page=register" class="nav-link">S'inscrire</a>
+                        </li>
                     {% endif %}
                 </ul>
             </div>

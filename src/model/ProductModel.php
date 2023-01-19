@@ -320,12 +320,34 @@
     function getOneUserCredentials($db, $email){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
         $query = $db -> prepare("SELECT Email, Password ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
                                 FROM Personne  ## FROM dans la table ..
-                                WHERE Email = :email "); ## instruction quand id est egale aux idproducts, :id = peut etre modifier. les paramètres principaux SQL doivent etre en maj
+                                WHERE Email = :email"); ## instruction quand id est egale aux idproducts, :id = peut etre modifier. les paramètres principaux SQL doivent etre en maj
         $query -> execute([
-                'email' => $email  ##remplace la valeur, la clé 'id' celui de la requete, je veux que dans cette clé : tu stocke la valeur que je vais te donner action utilisateur. selectionner dans le site 
+            'email' => $email,  ##remplace la valeur, la clé 'id' celui de la requete, je veux que dans cette clé : tu stocke la valeur que je vais te donner action utilisateur. selectionner dans le site 
+            #'password' => $Password  ##remplace la valeur, la clé 'id' celui de la requete, je veux que dans cette clé : tu stocke la valeur que je vais te donner action utilisateur. selectionner dans le site 
         ]);
         $user = $query->fetch(); ##recuperer les products, stoocker le resultat du query. que les resultats . un seul resultat = fetch
         return $user;
     }
 
+    function getOneUserEmail($db, $email){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
+        $query = $db -> prepare("SELECT Email, Password ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+                                FROM Personne  ## FROM dans la table ..
+                                WHERE Email = :email"); ## instruction quand id est egale aux idproducts, :id = peut etre modifier. les paramètres principaux SQL doivent etre en maj
+        $query -> execute([
+            'email' => $email,  ##remplace la valeur, la clé 'id' celui de la requete, je veux que dans cette clé : tu stocke la valeur que je vais te donner action utilisateur. selectionner dans le site 
+        ]);
+        $user = $query->fetch(); ##recuperer les products, stoocker le resultat du query. que les resultats . un seul resultat = fetch
+        return $user;
+    }
+
+    function saveUser($db,$email,$password,$lastname,$firstname){
+        $query = $db -> prepare("INSERT INTO Personne(Nom, Prenom, Email,Password) 
+                                VALUES (:lastname,:firstname,:email,:password)");
+        $query -> execute([
+            'email' => $email,
+            'password' => $password,
+            'lastname' => $lastname,
+            'firstname' => $firstname,     
+        ]);
+    }
 ?>

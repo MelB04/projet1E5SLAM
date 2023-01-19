@@ -30,6 +30,12 @@
 		<form class="form-signin" action="?page=register" method="POST">
             <h1 class="h3 mb-3 font-weight-normal">Inscription</h1>
 			
+            {% if form.message is defined %}
+                <div class="alert alert-{{ form.state }}" role="alert">
+                    {{ form.message }}
+                </div>
+            {% endif %}
+            
             <div class="m-1">
                 <label for="userLastname">Nom</label>
                 <input type="text" id="userLastname" class="form-control" name='userLastname' placeholder="Nom" autofocus="">

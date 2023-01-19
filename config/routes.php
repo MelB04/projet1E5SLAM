@@ -26,8 +26,10 @@
         "afficherOneEntreprise" => "afficherOneEntrepriseController",
 
 
-
+        #authentification
         'login' => "loginController",
         'register' => "registerController",
+        'logout' => "logoutController",
+        
     ]; //fin de tableau
 ?>
