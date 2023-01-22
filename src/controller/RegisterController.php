@@ -1,26 +1,35 @@
 <?php 
 
-function registerController($twig,$db){
+use PHPMailer\PHPMailer\PHPMailer;
+
+function registerController($twig,$db,$emailmdp){
     include_once '../src/model/ProductModel.php'; 
+    include_once '../src/model/MailModel.php'; 
     $form = [];
     
     if (isset($_POST['btnPostRegister'])){
 
-        $email = $_POST['userEmail'];
+        $useremail = $_POST['userEmail'];
         $password = $_POST['userPassword'];
         $passwordConfirm = $_POST['userPasswordConfirm']; 
         $lastname = $_POST['userLastname'];
         $firstname = $_POST['userFirstname'];
 
-        if ((!empty($email)) && (!empty($password)) && (!empty($passwordConfirm)) && (!empty($lastname)) && (!empty($firstname))){
-            if (getOneUserEmail($db, $email) == NULL) { 
+        if ((!empty($useremail)) && (!empty($password)) && (!empty($passwordConfirm)) && (!empty($lastname)) && (!empty($firstname))){
+            if (getOneUserEmail($db, $useremail) == NULL) { 
                 if ($password === $passwordConfirm) {
-                    saveUser($db, $email, password_hash($password, PASSWORD_DEFAULT), $lastname, $firstname);
+                    $code=uniqid($prefix = "");
+                    #var_dump($code);
+                    saveUser($db, $useremail, password_hash($password, PASSWORD_DEFAULT), $lastname, $firstname,$code);
+                    
+                    $email = new Mail(); 
+                    $email->envoyerMailer($twig,$useremail,'Inscription à Simpleduc',$emailmdp,$code);
+                    
                     $form = [
                         'state' => 'success',
-                        'message' => "Vous êtes maintenant inscrit au site" 
+                        'message' => "Vous êtes maintenant inscrit au site, veuillez confirmer votre email" 
                     ];
-                    header("Location: index.php");
+                    
                 } else { 
                     $form = [
                         'state' => 'danger',

@@ -10,22 +10,9 @@ function updateContactController($twig,$db){
     var_dump($_GET['page']);
     var_dump($_GET['idContact']);
 
-    if ($updateContact == NULL){
-        $_POST['contactnull']=true;
-        echo $twig->render("updateContact.html.twig",['contactnull' => getErrorContactnull()]);
+    echo $twig->render("updateContact.html.twig",['updateContact' => $updateContact]);
+    
 
-    }else{
-        echo $twig->render("updateContact.html.twig",['updateContact' => $updateContact]);
-    }
-
-}
-
-function getErrorContactnull() {
-    if (isset($_POST['contactnull'])){
-        if ($_POST['contactnull']){
-            return true;
-        }
-    } else return false;
 }
  
 ?>

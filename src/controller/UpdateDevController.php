@@ -20,24 +20,8 @@ function updateDevController($twig,$db){
         echo $twig -> render("home.html.twig", []);
     }else{
        
-        if ($oneDev == null){
-            $_POST['devnull']=true;
-            echo $twig->render("updateDev.html.twig",['devnull' => getDevnull()]);
+        echo $twig->render("updateDev.html.twig",['updateDev' => $oneDev, 'indices' => $indices, 'personnes' => $personnes]);
         
-        }else{
-            echo $twig->render("updateDev.html.twig",['updateDev' => $oneDev, 'indices' => $indices, 'personnes' => $personnes]);
-        }
-    }
-}
-
-function getDevnull(){
-    if (isset($_POST["devnull"])){
-        if ($_POST["devnull"]){
-            return true;
-
-        }
-    }else{
-        return false;
     }
 }
 

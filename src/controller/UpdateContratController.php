@@ -29,26 +29,10 @@ function updateContratController($twig,$db){
 
         echo $twig -> render("home.html.twig", ['contrats' => $contrats]);
     }else{
-
-        var_dump($_GET['page']);
-        var_dump($_GET['id']);
-
-        if ($updateContrat == NULL){
-            $_POST['valeurnull']=true;
-            echo $twig->render("updateContrat.html.twig",['valeurnull' => getErrorvaleurnull()]);
-
-        }else{
-            echo $twig->render("updateContrat.html.twig",['updateContrat' => $updateContrat, 'contacts' => $contacts, 'entreprises' => $entreprises]);
-        }
-
+        #var_dump($_GET['page']);
+        #var_dump($_GET['id']);
+        echo $twig->render("updateContrat.html.twig",['updateContrat' => $updateContrat, 'contacts' => $contacts, 'entreprises' => $entreprises]);
+        
     }
-}
-
-function getErrorvaleurnull() {
-    if (isset($_POST['valeurnull'])){
-        if ($_POST['valeurnull']){
-            return true;
-        }
-    } else return false;
 }
 ?>

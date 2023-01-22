@@ -9,6 +9,8 @@
         <h1 class="text-dark">
             Simpleduc
         </h1>
+
+        {% if session.login is defined %}
         <h2 class="text-dark py-4">Affichage des Contrats sous forme de Tableau</h2>
         <table class="table">
             <thead>
@@ -172,6 +174,6 @@
                 {% endfor %}
             </tbody>
         </table>
-
+        {% endif %}
     </div>
 {% endblock %}

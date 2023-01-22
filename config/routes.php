@@ -30,6 +30,9 @@
         'login' => "loginController",
         'register' => "registerController",
         'logout' => "logoutController",
+        'verificationemail' => "verificationemailController",
         
+
+        #email
     ]; //fin de tableau
 ?>

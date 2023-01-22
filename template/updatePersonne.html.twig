@@ -7,7 +7,7 @@
 {% block content %}
 <div class="bg-light rounded px-3 py-3">
   <div class="container">
-    {% if personnenull == true %}
+    {% if updatePersonne == NULL %}
       <h1>L'élèment n'existe plus</h1>
     {% else %}
       <h1>Modifier les informations de la personne {{ updatePersonne.Nom }} {{ updatePersonne.Prenom }}</h1>
@@ -15,7 +15,7 @@
   </div>
 </div>
 <div class="container mb-5">
-    {% if valeurnull == false %}
+    {% if updatePersonne != NULL %}
     <form action="?page=updatePersonne&id={{ updatePersonne.IDPersonne }}" method="POST">
         <div class="mb-3">
             <label for="NomPersonne" class="form-label">Nom de la personne</label>

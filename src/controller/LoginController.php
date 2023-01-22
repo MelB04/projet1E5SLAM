@@ -14,19 +14,26 @@ function loginController($twig,$db){
         #var_dump($user);
         
         if ($user != false) {
-            if (password_verify($password,$user['Password'])) { 
-                $_SESSION['login'] = $user['Email'];
-                $_SESSION['password'] = $user['Password'];
-                $form = [
-                    'state' => 'success',
-                    'message' => "Connexion réussie !" 
-                ];
-                header("Location: index.php");
+            if ($user['isVerif'] != 0){
+                if (password_verify($password,$user['Password'])) { 
+                    $_SESSION['login'] = $user['Email'];
+                    $_SESSION['password'] = $user['Password'];
+                    $form = [
+                        'state' => 'success',
+                        'message' => "Connexion réussie !" 
+                    ];
+                    header("Location: index.php");
 
-            } else { 
+                } else { 
+                    $form = [
+                        'state' => 'danger',
+                        'message' => "Vos informations de connexion sont incorrects !" 
+                    ];
+                }
+            }else{
                 $form = [
                     'state' => 'danger',
-                    'message' => "Vos informations de connexion sont incorrects !" 
+                    'message' => "Vous ne pouvez pas vous connecter vous n'avez pas encore confirmer votre email." 
                 ];
             }
         }else{

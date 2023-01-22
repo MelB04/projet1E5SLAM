@@ -9,22 +9,9 @@ function updateIndiceController($twig,$db){
     $oneIndice=labelOneIndice($db,$idIndice);
     var_dump($oneIndice);
 
-    if ($oneIndice == null){
-        $_POST['indicenull']=true;
-        echo $twig->render("updateIndice.html.twig",['indicenull' => geterrorIndicenull()]);     
-    }else{
-        echo $twig->render("updateIndice.html.twig",['updateIndice' => $oneIndice]);
-    }
+    echo $twig->render("updateIndice.html.twig",['updateIndice' => $oneIndice]);
+    
 }
 
-function geterrorIndicenull(){
-    if (isset($_POST["indicenull"])){
-        if ($_POST["indicenull"]){
-            return true;
-        }
-    }else{
-        return false;
-    }
-}
  
 ?>

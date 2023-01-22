@@ -8,7 +8,7 @@
 <div class="bg-light rounded px-3 py-3">
   <div class="container">
 
-    {% if outilnull == true %}
+    {% if Outil == NULL %}
       <h1>L'outil n'existe pas</h1>
     {% else %}
       <h1>Modifier l'outil</h1>
@@ -16,7 +16,7 @@
   </div>
 </div>
 <div class="container mb-5"> 
-  {% if outilnull == false %}
+  {% if Outil != NULL %}
   
   <form action="index.php?page=updateOutil&id={{ Outil.IDOutil }}" method="POST">
     <div class="mb-3">

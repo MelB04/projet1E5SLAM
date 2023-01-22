@@ -15,7 +15,8 @@
     <div class="mb-3">
         <label for="IDPersonne" class="form-label">Choisir une personne :</label>
         <div>
-            <select class="form-select" name="IDPersonne" size="1">                    
+            <select class="form-select" name="IDPersonne" size="1">
+                <option value="">Choisir une personne</option>                    
                 {% for personne in personnes %}
                     <option value={{ personne.IDPersonne }}>{{ personne.Nom }}</option>
                 {% endfor %}
@@ -25,7 +26,8 @@
     <div class="mb-3">
         <label for="IDIndice" class="form-label">Choisir un indice :</label>
         <div>
-            <select class="form-select" name="IDIndice" size="1">                    
+            <select class="form-select" name="IDIndice" size="1">
+                <option value="">Choisir un indice</option>                    
                 {% for indice in indices %}
                     <option value={{ indice.IDIndice }}>{{ indice.CoutHoraire }}</option>
                 {% endfor %}

@@ -7,7 +7,7 @@
 {% block content %}
 <div class="bg-light rounded px-3 py-3">
   <div class="container">
-    {% if valeurnull == true %}
+    {% if updateContrat == NULL %}
       <h1>L'élèment n'existe plus</h1>
     {% else %}
       <h1>Modifier le Contrat n° {{ updateContrat.IDContrat }}</h1>
@@ -15,7 +15,7 @@
   </div>
 </div>
 <div class="container mb-5">
-  {% if valeurnull == false %}
+  {% if updateContrat != NULL %}
   <form action="?page=updateContrat&id={{ updateContrat.IDContrat }}" method="POST">
     <div class="mb-3">
       <label for="DateSignature" class="form-label">Date de Signature</label>

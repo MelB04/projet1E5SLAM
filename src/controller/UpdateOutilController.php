@@ -10,24 +10,8 @@
         $oneOutil=labelOneOutil($db,$idOutil);
         var_dump($oneOutil);
 
-        if ($oneOutil == null){
-            $_POST['outilnull']=true;
-            echo $twig->render("updateOutil.html.twig",['outilnull' => getOutilnull()]);
+        echo $twig->render("updateOutil.html.twig",['Outil' => $oneOutil]);
         
-        }else{
-            echo $twig->render("updateOutil.html.twig",['Outil' => $oneOutil]);
-        }
-    }
-
-    function getOutilnull(){
-        if (isset($_POST["outilnull"])){
-            if ($_POST["outilnull"]){
-                return true;
-
-            }
-        }else{
-            return false;
-        }
     }
 
 
