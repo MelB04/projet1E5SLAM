@@ -11,10 +11,10 @@ function verificationemailController($twig,$db){
     
     $hours = getInterval($db,$_GET['email']);
     #var_dump($user);
-    #var_dump($hours);
+    var_dump($hours);
     
     if ($user['isVerif'] == 0){
-        if ($hours < 86400){
+        if ($hours['interval'] < 86400){
             if ($code == $user['Code']){
                 $form = [
                     'state' => 'success',

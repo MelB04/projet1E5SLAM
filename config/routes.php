@@ -1,37 +1,35 @@
 <?php
     $routes = [ 
-        'home' => 'homeController',
-        'erreurpdo' => 'erreurpdoController',
-        'addContrat' => 'addContratController',
-        'addDev' => 'addDevController',
+        'home' => 'homeController:0',
+        'erreurpdo' => 'erreurpdoController:0',
+        'addContrat' => 'addContratController:2',
+        'addDev' => 'addDevController:2',
 
-        'addPersonne' => 'addPersonneController',
-        'updatePersonne' => 'updatePersonneController',
-        'delPersonne' => 'delPersonneController',
+        'addPersonne' => 'addPersonneController:2',
+        'updatePersonne' => 'updatePersonneController:2',
+        'delPersonne' => 'delPersonneController:2',
 
-        'delContrat' => 'delContratController',
-        'updateContrat' => 'updateContratController',
-        "addEntreprise" => "addEntrepriseController",
-        'addContact' => 'addContactController',
-        "updateEntreprise" => "updateEntrepriseController",
-        "addIndice" => "addIndiceController",
-        "updateIndice" =>"updateIndiceController",
-        "updateDev" => "updateDevController",
-        "delDev" => "delDevController",
+        'delContrat' => 'delContratController:2',
+        'updateContrat' => 'updateContratController:2',
+        "addEntreprise" => "addEntrepriseController:2",
+        'addContact' => 'addContactController:2',
+        "updateEntreprise" => "updateEntrepriseController:2",
+        "addIndice" => "addIndiceController:2",
+        "updateIndice" =>"updateIndiceController:2",
+        "updateDev" => "updateDevController:2",
+        "delDev" => "delDevController:2",
 
-        "updateContact" => "updateContactController",
+        "updateContact" => "updateContactController:2",
         #"deleteContact" => "deleteContactController",
-        "addOutil"=> "addOutilController",
-        "updateOutil"  => "updateOutilController",
-        "afficherOneEntreprise" => "afficherOneEntrepriseController",
-
+        "addOutil"=> "addOutilController:2",
+        "updateOutil"  => "updateOutilController:2",
+        "afficherOneEntreprise" => "afficherOneEntrepriseController:2",
 
         #authentification
-        'login' => "loginController",
-        'register' => "registerController",
-        'logout' => "logoutController",
-        'verificationemail' => "verificationemailController",
-        
+        'login' => "loginController:0",
+        'register' => "registerController:0",
+        'logout' => "logoutController:0",
+        'verificationemail' => "verificationemailController:0",
 
         #email
     ]; //fin de tableau
