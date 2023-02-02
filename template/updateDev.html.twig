@@ -20,15 +20,7 @@
     <div class="mb-3">
         <label for="IDPersonne" class="form-label">Choisir une personne :</label>
         <div>
-            <select class="form-select" name="IDPersonne" size="1">                    
-                {% for personne in personnes %}
-                  {% if personne.Nom == updateDev.NomPersonne %}
-                    <option value={{ personne.IDPersonne }} selected>{{ personne.Nom }}</option>
-                  {% else %}
-                    <option value={{ personne.IDPersonne }} >{{ personne.Nom }}</option>
-                  {% endif %}
-                {% endfor %}
-            </select>
+            <p>{{ updateDev.NomPersonne }}</p>
         </div>
     </div>
     <div class="mb-3">

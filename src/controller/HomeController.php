@@ -17,7 +17,9 @@ function homeController($twig,$db){
 
     $devs=getAllDev($db);
 
-    echo $twig -> render("home.html.twig", ['contrats' => $contrats, 'entreprises' =>$entreprises, 'contacts' => $contacts, 'devs' => $devs, 'Indices' =>$Indices, "outils" => $outils]);
+    $Personnes=getAllPersonnes($db);
+
+    echo $twig -> render("home.html.twig", ['contrats' => $contrats, 'entreprises' =>$entreprises, 'contacts' => $contacts, 'devs' => $devs, 'Indices' =>$Indices, "outils" => $outils, "Personnes" => $Personnes]);
 }
 
 ?>

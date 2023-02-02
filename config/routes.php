@@ -21,5 +21,10 @@
         "deconnexion" => "deconnexionController:0",
         "login"=>"loginController:0",
         "inscription"=>"inscriptionController:0",
-    ]; //fin de tableau
+        "afficherOneEntreprise" => "afficherOneEntrepriseController:0",
+        'addPersonne' => 'addPersonneController:0',
+        'updatePersonne' => 'updatePersonneController:0',
+        'delPersonne' => 'delPersonneController:0',
+
+        ]; //fin de tableau
 ?>
