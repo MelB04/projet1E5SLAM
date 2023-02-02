@@ -2,19 +2,21 @@
 
 function updateEntrepriseController($twig,$db){
     include_once '../src/model/ProductModel.php';  ##on inclut pour apres
-    
+    var_dump($_POST);
     $idEntreprise=$_GET["id"];
-    var_dump($idEntreprise);
-    var_dump($_GET["page"]);
+    
 
     $oneEntreprise=labelOneEntreprise($db,$idEntreprise);
-    var_dump($oneEntreprise);
 
     if ($oneEntreprise == null){
         $_POST['entreprisenull']=true;
         echo $twig->render("updateEntreprise.html.twig",['entreprisenull' => getentreprisenull()]);
      
     }else{
+        if (isset($_POST["btnEntreprise"])){
+            
+            updateOneEntreprise($db, $idEntreprise, $_POST["EntrepriseLabel"]);
+    }
         echo $twig->render("updateEntreprise.html.twig",['nomEntreprise' => $oneEntreprise]);
     }
 }

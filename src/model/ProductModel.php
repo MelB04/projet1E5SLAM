@@ -105,6 +105,47 @@
         return $OneEntreprise;
     }
 
+    function updateOneProduct($db, $id, $code, $libelle){
+            $query = $db->prepare("UPDATE Outil SET Code=:Code, Libelle=:Libelle, Version=:Version WHERE id=:id");
+            return $query->execute([
+            'id' => $id,
+            'Code' => $code,
+            'Libelle' => $libelle            
+            ]);
+           }
+          
+           function updateOneEntreprise($db, $id, $libelle){
+            $query = $db->prepare("UPDATE Entreprise_Cliente SET Nom=:Nom WHERE IDEntre=:id");
+            return $query->execute([
+            'id' => $id,
+            'Nom' => $libelle            
+            ]);
+           }
+
+           function checkUser($db,$login){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
+            $query = $db -> prepare("SELECT email,motdepasse,idRole FROM Personne where email=:login "); 
+            $query -> execute([
+                'login' => $login,
+ 
+            ]);
+            $user = $query->fetch(); ##recuperer les products, stoocker le resultat du query. que les resultats . un seul resultat = fetch
+            return $user;
+        }           
+
+            function creeUser($db,$nom,$prenom,$email,$motdepasse,$idRole){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
+                var_dump($nom);
+                $query = $db->prepare("INSERT INTO Personne(Nom,Prenom,email,motdepasse,idRole) VALUES (:nom,:prenom,:email,:motdepasse,:idRole)"); 
+                $query -> execute([
+                    'email' => $email,
+                    "nom" => $nom,
+                    "prenom" => $prenom,
+                    "motdepasse" =>PASSWORD_hash($motdepasse, PASSWORD_DEFAULT),
+                    'idRole' => $idRole
+
+    
+                ]);
+                
+        }
 
 
 
@@ -149,13 +190,22 @@
 
 
     function labelOneOutil($db,$idOutil){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
-        $query = $db -> prepare("SELECT Code, Libelle, Version FROM Outil where Code=:Code"); 
+        $query = $db -> prepare("SELECT Code, Libelle, Version FROM Outil where Code=:id"); 
         $query -> execute([
-            'Code' => $idOutil  ##remplace la valeur, la clé 'id' celui de la requete, je veux que dans cette clé : tu stocke la valeur que je vais te donner action utilisateur. selectionner dans le site 
+            'id' => $idOutil  ##remplace la valeur, la clé 'id' celui de la requete, je veux que dans cette clé : tu stocke la valeur que je vais te donner action utilisateur. selectionner dans le site 
         ]);
         $OneOutil = $query->fetch(); ##recuperer les products, stoocker le resultat du query. que les resultats . un seul resultat = fetch
         return $OneOutil;
     }
+
+    function updateOneOutil($db, $id, $libelle,$version){
+        $query = $db->prepare("UPDATE Outil SET Libelle=:Libelle, Version=:Version WHERE Code=:id");
+        return $query->execute([
+        'id' => $id,
+        'Libelle' => $libelle,
+        'Version' => $version
+        ]);
+       }
     
 
     function saveIndice($db,$Indice){
@@ -237,6 +287,8 @@
         $OneDev = $query->fetch(); ##recuperer les products, stoocker le resultat du query. que les resultats . un seul resultat = fetch
         return $OneDev;
     }
+
+
 
     
 ?>

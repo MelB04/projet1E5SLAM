@@ -1,4 +1,8 @@
 <?php
+    session_start();
+    
+
+
     require_once "../vendor/autoload.php"; //stimule l'apport d'un fichier 
     require_once "../config/routes.php"; //stimule l'apport d'un fichier routes.php 
     require_once "../src/router.php"; //stimule l'apport d'un fichier router.php importe le router

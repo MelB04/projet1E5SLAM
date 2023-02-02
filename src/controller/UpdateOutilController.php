@@ -1,34 +1,40 @@
 <?php 
 
-    function updateOutilController($twig,$db){
-        include_once '../src/model/ProductModel.php';  ##on inclut pour apres
-        
-        $idOutil=$_GET["id"];
-        var_dump($idOutil);
-        var_dump($_GET["page"]);
+function updateOutilController($twig,$db){
+    include_once '../src/model/ProductModel.php';  ##on inclut pour apres
+    var_dump($_POST);
+    $idOutil=$_GET["id"];
+    $change=labelOneOutil($db,$idOutil);
+    
 
-        $oneOutil=labelOneOutil($db,$idOutil);
-        var_dump($oneOutil);
+    $oneOutil=labelOneOutil($db,$idOutil);
 
-        if ($oneOutil == null){
-            $_POST['outilnull']=true;
-            echo $twig->render("updateOutil.html.twig",['outilnull' => getOutilnull()]);
-        
-        }else{
-            echo $twig->render("updateOutil.html.twig",['Outil' => $oneOutil]);
-        }
+    if ($oneOutil == null){
+        $_POST['outilnull']=true;
+        echo $twig->render("updateOutil.html.twig",['outilnull' => getoutilnull()]);
+     
+    }else{
+        if (isset($_POST["btnUpdOutil"])){
+            $code=$_GET["id" ];
+            $label=$_POST["OutilLabel" ];
+            $version=$_POST["OutilVersion" ];
+            updateOneOutil($db, $code,$label, $version);
     }
-
-    function getOutilnull(){
-        if (isset($_POST["outilnull"])){
-            if ($_POST["outilnull"]){
-                return true;
-
-            }
-        }else{
-            return false;
-        }
+        echo $twig->render("updateOutil.html.twig",['Outil' => $oneOutil]);
     }
+}
+
+function getoutilnull(){
+    if (isset($_POST["outilnull"])){
+        if ($_POST["outilnull"]){
+            return true;
+
+        }
+    }else{
+        return false;
+    }
+}
+
 
 
 ?>

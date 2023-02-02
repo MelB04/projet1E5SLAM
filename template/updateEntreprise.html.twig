@@ -18,7 +18,7 @@
 <div class="container mb-5"> 
   {% if entreprisenull == false %}
   
-  <form action="index.php?page=updateEntreprise&id={{ nomEntreprise.IDEntre }}" method="POST">
+  <form  method="POST">
     <div class="mb-3">
         <label for="EntrepriseLabel" class="form-label"> Nom</label>
         <input type="text" class="from-control" id="EntrepriseLabel" name="EntrepriseLabel" value="{{nomEntreprise.Nom}}" >

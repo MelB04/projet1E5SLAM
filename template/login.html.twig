@@ -1,0 +1,28 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Page ajouter Login
+{% endblock %}
+
+{% block content %}
+<div class="bg-light rounded px-3 py-3">
+    <div class="container">
+      <h1>connexion</h1>
+    </div>
+  </div>
+  <div class="container mb-5">
+      
+    <form method="POST">
+    <div class="mb-3">
+        <label for="LoginLabel" class="form-label"> mail</label>
+        <input type="text" class="from-control" id="LoginLabel" name="LoginLabel">
+    </div>
+    <div class="mb-3">
+        <label for="LoginLabel" class="form-label"> mot de passe</label>
+        <input type="password" class="from-control" id="passwordLabel" name="passwordLabel">
+    </div>
+    <button type="submit" class="btn btn-primary" name="btnLogin">Login</button>
+    </form>
+</div>
+
+{% endblock %}

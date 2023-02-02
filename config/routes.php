@@ -1,21 +1,25 @@
 <?php
     $routes = [ 
-        'home' => 'homeController',
-        'erreurpdo' => 'erreurpdoController',
-        'addContrat' => 'addContratController',
-        'addDev' => 'addDevController',
+        'home' => 'homeController:0',
+        'erreurpdo' => 'erreurpdoController:0',
+        'addContrat' => 'addContratController:0',
+        'addDev' => 'addDevController:0',
 
-        'delContrat' => 'delContratController',
-        'updateContrat' => 'updateContratController',
-        "addEntreprise" => "addEntrepriseController",
-        'addContact' => 'addContactController',
-        "updateEntreprise" => "UpdateEntrepriseController",
-        "addIndice" => "addIndiceController",
-        "updateIndice" =>"updateIndiceController",
-        "updateDev" => "UpdateDevController",
-        "updateContact" => "UpdateContactController",
-        "addOutil"=> "addOutilController",
-        "updateOutil"  => "updateOutilController"
+        'delContrat' => 'delContratController:2',
+        'updateContrat' => 'updateContratController:2',
+        "addEntreprise" => "addEntrepriseController:2",
+        'addContact' => 'addContactController:2',
+        "updateEntreprise" => "UpdateEntrepriseController:2",
+        "addIndice" => "addIndiceController:2",
+        "updateIndice" =>"updateIndiceController:2",
+        "updateDev" => "UpdateDevController:2",
+        "updateContact" => "UpdateContactController:2",
+        "addOutil"=> "addOutilController:2",
+        "updateOutil"  => "updateOutilController:2",
 
+
+        "deconnexion" => "deconnexionController:0",
+        "login"=>"loginController:0",
+        "inscription"=>"inscriptionController:0",
     ]; //fin de tableau
 ?>
