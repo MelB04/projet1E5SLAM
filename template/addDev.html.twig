@@ -11,30 +11,36 @@
   </div>
 </div>
 <div class="container mb-5">
-  <form action="index.php?page=addDev" method="POST">
-    <div class="mb-3">
-        <label for="IDPersonne" class="form-label">Choisir une personne :</label>
-        <div>
-            <select class="form-select" name="IDPersonne" size="1">
-                <option value="">Choisir une personne</option>                    
-                {% for personne in personnes %}
-                    <option value={{ personne.IDPersonne }}>{{ personne.Nom }}</option>
-                {% endfor %}
-            </select>
-        </div>
+
+    <div class="alert alert-{{ form['state'] }}" role="alert">
+    {{ form['message'] }}
     </div>
-    <div class="mb-3">
-        <label for="IDIndice" class="form-label">Choisir un indice :</label>
-        <div>
-            <select class="form-select" name="IDIndice" size="1">
-                <option value="">Choisir un indice</option>                    
-                {% for indice in indices %}
-                    <option value={{ indice.IDIndice }}>{{ indice.CoutHoraire }}</option>
-                {% endfor %}
-            </select>
+    <form action="index.php?page=addDev" method="POST">
+        <div class="mb-3">
+            <label for="IDPersonne" class="form-label">Choisir une personne :</label>
+            <div>
+                <select class="form-select" name="IDPersonne" size="1">
+                    <option value="">Choisir une personne</option>                    
+                    {% for personne in personnes %}
+                        <option value={{ personne.IDPersonne }}>{{ personne.Nom }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <span>Si le contact n'est pas présent dans la liste, cela veut dire qu'il est déjà développeur. S'il ne l'est pas encore, cela veut dire qu'il n'existe pas dans les Personnes, veuillez l'ajouter avec le lien <a href="?page=addPersonne">Ajouter une Personne</a></span>
         </div>
-    </div>
-    <button type="submit" class="btn btn-primary" name="btnAddDev">Ajouter un développeur</button>
-  </form>
+        <div class="mb-3">
+            <label for="IDIndice" class="form-label">Choisir un indice :</label>
+            <div>
+                <select class="form-select" name="IDIndice" size="1">
+                    <option value="">Choisir un indice</option>                    
+                    {% for indice in indices %}
+                        <option value={{ indice.IDIndice }}>{{ indice.CoutHoraire }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <span>Si l'indice cherché n'est pas présent dans la liste, veuillez avant l'ajouter avec le lien <a href="?page=addIndice">Ajouter un indice</a></span>
+        </div>
+        <button type="submit" class="btn btn-primary" name="btnAddDev">Ajouter un développeur</button>
+    </form>
 </div>
 {% endblock %}

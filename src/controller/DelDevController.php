@@ -9,16 +9,16 @@ function delDevController($twig,$db){
         $idDev=$_POST['dev'];
         delDev($db,$idDev);
 
-        echo $twig -> render("home.html.twig", []);
+        header("Location: index.php");
 
     }else if (isset($_POST['btnDelPlusieursDevs'])){
-        if (!empty($_POST['dev']))
+        if (!empty($_POST['dev'])){
             foreach ($_POST['dev'] as $value){
                 delDev($db,$value);
             }
-                  
-        echo $twig -> render("home.html.twig", []);
             
+        }
+        header("Location: index.php");
     }else{
         echo $twig -> render("delDev.html.twig", ['devs' => $devs]);
     }

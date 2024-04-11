@@ -17,13 +17,43 @@
 <div class="container mb-5">
     {% if updatePersonne != NULL %}
     <form action="?page=updatePersonne&id={{ updatePersonne.IDPersonne }}" method="POST">
+      <div class="alert alert-{{ form['state'] }}" role="alert">
+        {{ form['message'] }}
+      </div>
+    
+      <form action="{{ page }}" method="POST"> <!-- je veux que tu ailles sur ma route addProduct en méthode POST => utilisation de la variable globale $_POST-->
         <div class="mb-3">
-            <label for="NomPersonne" class="form-label">Nom de la personne</label>
-            <input type="text" class="form-control" id="NomPersonne" name="NomPersonne" value="{{ updatePersonne.Nom }}">
+          <label for="userLastname">Nom</label>
+          <input type="text" id="userLastname" class="form-control" name='userLastname' placeholder="Nom" autofocus="" value="{{ updatePersonne.Nom }}">
         </div>
         <div class="mb-3">
-            <label for="PrenomPersonne" class="form-label">Prénom de la personne</label>
-            <input type="text" class="form-control" id="PrenomPersonne" name="PrenomPersonne" value="{{ updatePersonne.Prenom }}">
+            <label for="userFirstname">Prénom</label>
+            <input type="text" id="userFirstname" class="form-control" name='userFirstname' placeholder="Prénom" autofocus="" value={{ updatePersonne.Prenom }}>
+        </div>
+        <div class="mb-3">
+            <label for="userEmail">Adresse courriel</label>
+            <input type="email" id="userEmail" name="userEmail" class="form-control" placeholder="Adresse courriel" autofocus="" value={{ updatePersonne.Email }}>
+        </div>
+        
+        <div class="mb-3">
+          <label for="userRole" class="form-label">Rôle</label>
+          <select class="form-select" name="userRole">
+            {% for role in roles %}
+              {% if role.idRole == updatePersonne.idRole %}
+                <option value="{{ role.idRole }}" selected >{{ role.label }}</option>
+              {% else %}
+                <option value="{{ role.idRole }}">{{ role.label }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="userPasswordAdmin">Mot de passe Administrateur pour modifier le compte</label>
+          <input type="password" id="userPasswordAdmin" name="userPasswordAdmin" class="form-control" placeholder="Mot de passe" required>
+        </div>
+        <div class="mb-3">
+            <label for="userPassworAdmindConfirm">Confirmation du mot de passe Administrateur</label>
+            <input type="password" id="userPassworAdmindConfirm" name="userPassworAdmindConfirm" class="form-control" placeholder="Mot de passe" required>
         </div>
         <button type="submit" class="btn btn-primary" name="btnUpdPersonne">Modifier les informations de {{ updatePersonne.Nom }} {{ updatePersonne.Prenom }}</button> <!-- On va vouloir détecter quand on appuie-->
     </form> 

@@ -16,12 +16,13 @@
         <div class="mb-3">
             <label for="ContactLabel" class="form-label">Choisir un Contact :</label>
             <div>
-                <select name="Personne" size="1">                    
+                <select class="form-select" name="Personne" size="1">                    
                     {% for personne in personnes %}
                         <option value={{ personne.IDPersonne }}>{{ personne.Nom }}</option>
                     {% endfor %}
                 </select>
             </div>
+            <span>Sont présents ici que les contacts n'étant pas encore créés mais faisant partis des personnes.</span>
         </div>
     <button type="submit" class="btn btn-primary" name="btnAddContact">Ajouter un Contact</button>
     </form>

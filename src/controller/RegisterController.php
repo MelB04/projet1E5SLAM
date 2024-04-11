@@ -7,6 +7,10 @@ function registerController($twig,$db,$emailmdp){
     include_once '../src/model/MailModel.php'; 
     $form = [];
     
+    if (isset($_SESSION['auth'])) { 
+        header('Location: index.php');
+    }
+    
     if (isset($_POST['btnPostRegister'])){
 
         $useremail = $_POST['userEmail'];
@@ -20,7 +24,7 @@ function registerController($twig,$db,$emailmdp){
                 if ($password === $passwordConfirm) {
                     $code=uniqid($prefix = "");
                     #var_dump($code);
-                    saveUser($db, $useremail, password_hash($password, PASSWORD_DEFAULT), $lastname, $firstname,$code);
+                    saveUser($db, $useremail, password_hash($password, PASSWORD_DEFAULT), $lastname, $firstname,$code,1);
                     
                     $email = new Mail(); 
                     $email->envoyerMailer($twig,$useremail,'Inscription à Simpleduc',$emailmdp,$code);

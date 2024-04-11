@@ -210,8 +210,17 @@
     }  
     
     function getAllPersonnes($db){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
-        $query = $db -> prepare("SELECT IDPersonne, Nom, Prenom ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+        $query = $db -> prepare("SELECT IDPersonne, Nom, Prenom, Email ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
                                 FROM Personne");
+        $query -> execute([]);
+        $personnes = $query->fetchAll(); ##recuperer les products, stoocker le resultat du query. que les resultats . plusieurs resultat = fetchAll
+        return $personnes;
+    }
+
+    function getAllPersonnesPasdansDev($db){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
+        $query = $db -> prepare("SELECT IDPersonne, Nom, Prenom ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+                                FROM Personne
+                                WHERE Personne.IDPersonne not in (SELECT Dev.IDPersonne FROM Dev)");
         $query -> execute([]);
         $personnes = $query->fetchAll(); ##recuperer les products, stoocker le resultat du query. que les resultats . plusieurs resultat = fetchAll
         return $personnes;
@@ -227,7 +236,7 @@
     }
     
     function getAllDev($db){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup        
-        $query = $db -> prepare("SELECT Dev.IDPersonne, Personne.Nom AS NomPersonne, Indice.CoutHoraire AS CoutHoraire ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+        $query = $db -> prepare("SELECT Dev.IDPersonne, Personne.Nom AS NomPersonne, Personne.Prenom AS PrenomPersonne, Indice.CoutHoraire AS CoutHoraire ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
                                 FROM Dev
                                 INNER JOIN Indice ON Indice.IDIndice = Dev.IDIndice
                                 INNER JOIN Personne ON Personne.IDPersonne = Dev.IDPersonne");  ## FROM dans la table .."); ## instruction quand id est egale aux idproducts, :id = peut etre modifier. les paramètres principaux SQL doivent etre en maj
@@ -279,7 +288,7 @@
     }
     
     function labelOnePersonne($db,$idPersonne){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
-        $query = $db -> prepare("SELECT IDPersonne, Nom, Prenom ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+        $query = $db -> prepare("SELECT IDPersonne, Nom, Prenom, Email, idRole ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
                                 FROM Personne
                                 WHERE IDPersonne = :idPersonne"); 
         $query -> execute([
@@ -289,14 +298,16 @@
         return $OnePersonne;
     }
 
-    function updatePersonne($db,$IDPersonne,$nom,$prenom){        
+    function updatePersonne($db,$IDPersonne,$nom,$prenom,$email,$role){        
         $query = $db -> prepare("UPDATE Personne
-                                SET Nom = :nom, Prenom=:prenom
+                                SET Nom = :nom, Prenom=:prenom, Email=:email, idRole=:idRole
                                 WHERE IDPersonne = :IDPersonne ");
         $query -> execute([
         'IDPersonne' => $IDPersonne,
         'nom' => $nom , 
         'prenom' => $prenom,     
+        'email' => $email,     
+        'idRole' => $role,     
         ]);
     }
     
@@ -318,12 +329,34 @@
     
     
     function getOneUserCredentials($db, $email){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
-        $query = $db -> prepare("SELECT Email, Password, Code, isVerif, dateheurecreation ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+        $query = $db -> prepare("SELECT IDPersonne, Email, Password, Code, isVerif, dateheurecreation, idRole, Nom, Prenom ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
                                 FROM Personne  ## FROM dans la table ..
                                 WHERE Email = :email"); ## instruction quand id est egale aux idproducts, :id = peut etre modifier. les paramètres principaux SQL doivent etre en maj
         $query -> execute([
             'email' => $email,  ##remplace la valeur, la clé 'id' celui de la requete, je veux que dans cette clé : tu stocke la valeur que je vais te donner action utilisateur. selectionner dans le site 
             #'password' => $Password  ##remplace la valeur, la clé 'id' celui de la requete, je veux que dans cette clé : tu stocke la valeur que je vais te donner action utilisateur. selectionner dans le site 
+        ]);
+        $user = $query->fetch(); ##recuperer les products, stoocker le resultat du query. que les resultats . un seul resultat = fetch
+        return $user;
+    }
+
+    function updateMdp($db, $email, $password){ 
+        $query = $db->prepare(" UPDATE Personne 
+                                SET password=:password
+                                WHERE Email=:email"); 
+        return $query->execute([
+            'email' => $email,
+            'password' => $password, 
+            ]);
+    }
+
+    function getOneRoleUser($db, $email){
+        $query = $db -> prepare("SELECT Role.label ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+                                FROM Role  ## FROM dans la table ..
+                                INNER JOIN Personne ON Personne.idRole = Role.idRole
+                                WHERE Personne.Email = :email"); ## instruction quand id est egale aux idproducts, :id = peut etre modifier. les paramètres principaux SQL doivent etre en maj
+        $query -> execute([
+            'email' => $email,  ##remplace la valeur, la clé 'id' celui de la requete, je veux que dans cette clé : tu stocke la valeur que je vais te donner action utilisateur. selectionner dans le site 
         ]);
         $user = $query->fetch(); ##recuperer les products, stoocker le resultat du query. que les resultats . un seul resultat = fetch
         return $user;
@@ -361,16 +394,117 @@
         return $user;
     }
     
-
-    function saveUser($db,$email,$password,$lastname,$firstname,$code){
-        $query = $db -> prepare("INSERT INTO Personne(Nom, Prenom, Email,Password,Code,dateheurecreation) 
-                                VALUES (:lastname,:firstname,:email,:password,:Code,Now())");
+    function saveUser($db,$email,$password,$lastname,$firstname,$code,$role){
+        $query = $db -> prepare("INSERT INTO Personne(Nom, Prenom, Email,Password,Code,dateheurecreation,idRole) 
+                                VALUES (:lastname,:firstname,:email,:password,:Code,Now(),:idRole)");
         $query -> execute([
             'email' => $email,
             'password' => $password,
             'lastname' => $lastname,
             'firstname' => $firstname,     
-            'Code' => $code,     
+            'Code' => $code,
+            'idRole' => $role,     
         ]);
+    }
+
+    function getAllRoles($db){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
+        $query = $db -> prepare("SELECT idRole, label
+                                FROM Role  ## FROM dans la table .."); ## instruction quand id est egale aux idproducts, :id = peut etre modifier. les paramètres principaux SQL doivent etre en maj
+        $query -> execute([]);
+        $roles = $query->fetchAll(); ##recuperer les products, stocker le resultat du query. que les resultats . plusieurs resultat = fetchAll
+        return $roles;
+    }
+
+
+    function getPersonneDev($db,$email){
+        $query = $db -> prepare("SELECT Dev.IDPersonne, Dev.IDIndice ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+                                FROM Dev  ## FROM dans la table ..
+                                INNER JOIN Personne ON Personne.IDPersonne = Dev.IDPersonne
+                                WHERE Personne.Email = :email"); ## instruction quand id est egale aux idproducts, :id = peut etre modifier. les paramètres principaux SQL doivent etre en maj
+        $query -> execute([
+            'email' => $email,  ##remplace la valeur, la clé 'id' celui de la requete, je veux que dans cette clé : tu stocke la valeur que je vais te donner action utilisateur. selectionner dans le site 
+        ]);
+        $userDev = $query->fetch(); ##recuperer les products, stoocker le resultat du query. que les resultats . un seul resultat = fetch
+        return $userDev;
+    }
+
+    function saveMaitriser($db,$devpersonne, $outil){
+        $query = $db -> prepare("INSERT INTO Maitriser(IDPersonne, Code) 
+                                VALUES (:id,:outil)");
+        $query -> execute([
+            'id' => $devpersonne,
+            'outil' => $outil,    
+        ]);
+    }
+
+    function delMaitriser($db,$idPersonne,$code){
+        $query = $db -> prepare("DELETE FROM Maitriser
+                                WHERE IDPersonne = :idPersonne and Code=:code");
+        $query -> execute([
+            'idPersonne'=> $idPersonne,  
+            'code' => $code,   
+        ]);
+    }
+    
+
+    function getOutilOnePersonne($db,$email){
+        $query = $db -> prepare("SELECT Outil.Code AS Code, Outil.Libelle AS Libelle , Outil.Version AS Version ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+                                FROM Maitriser  ## FROM dans la table ..
+                                INNER JOIN Outil ON Outil.Code = Maitriser.Code
+                                INNER JOIN Dev ON Dev.IDPersonne = Maitriser.IDPersonne
+                                INNER JOIN Personne ON Dev.IDPersonne = Personne.IDPersonne
+                                WHERE Personne.Email = :email"); ## instruction quand id est egale aux idproducts, :id = peut etre modifier. les paramètres principaux SQL doivent etre en maj
+        $query -> execute([
+            'email' => $email,  ##remplace la valeur, la clé 'id' celui de la requete, je veux que dans cette clé : tu stocke la valeur que je vais te donner action utilisateur. selectionner dans le site 
+        ]);
+        $userDev = $query->fetchAll(); ##recuperer les products, stoocker le resultat du query. que les resultats . un seul resultat = fetch
+        return $userDev;
+    }
+    
+    function getDerniereEquipe($db,$idpersonne){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
+        $query = $db -> prepare("SELECT Max(IDEquipe) AS IDEquipe
+                                FROM regrouper
+                                WHERE regrouper.IDPersonne = :idpersonne  ## FROM dans la table .."); ## instruction quand id est egale aux idproducts, :id = peut etre modifier. les paramètres principaux SQL doivent etre en maj
+        $query -> execute([
+            'idpersonne' => $idpersonne,
+        ]);
+        $DerniereEquipe = $query->fetch(); ##recuperer les products, stocker le resultat du query. que les resultats . plusieurs resultat = fetchAll
+        return $DerniereEquipe;
+    }
+
+    function getMembreGroupe($db,$idgroupe){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
+        $query = $db -> prepare("SELECT regrouper.IDPersonne AS IDPersonne, Personne.Nom AS Nom
+                                FROM regrouper
+                                INNER JOIN Personne ON regrouper.IDPersonne = Personne.IDPersonne
+                                WHERE regrouper.IDEquipe = :idgroupe  ## FROM dans la table .."); ## instruction quand id est egale aux idproducts, :id = peut etre modifier. les paramètres principaux SQL doivent etre en maj
+        $query -> execute([
+            'idgroupe' => $idgroupe,
+        ]);
+        $roles = $query->fetchAll(); ##recuperer les products, stocker le resultat du query. que les resultats . plusieurs resultat = fetchAll
+        return $roles;
+    }
+
+    function getdernierProjet($db, $idequipe){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
+        $query = $db -> prepare("SELECT IDModule, Label
+                                FROM Module
+                                WHERE Module.IDEquipe=:idequipe1 and 
+                                Module.IDModule = (SELECT MAX(IDModule) FROM Module Where Module.IDEquipe=:idequipe2)  ## FROM dans la table .."); ## instruction quand id est egale aux idproducts, :id = peut etre modifier. les paramètres principaux SQL doivent etre en maj
+        $query -> execute([
+            'idequipe1' => $idequipe,
+            'idequipe2' => $idequipe,
+        ]);
+        $dernierProjet = $query->fetch(); ##recuperer les products, stocker le resultat du query. que les resultats . plusieurs resultat = fetchAll
+        return $dernierProjet;
+    }
+
+    function gettacheprojet($db, $idmodule){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
+        $query = $db -> prepare("SELECT IDTache, Libelle
+                                FROM Tache
+                                WHERE IDModule=:idmodule "); ## instruction quand id est egale aux idproducts, :id = peut etre modifier. les paramètres principaux SQL doivent etre en maj
+        $query -> execute([
+            'idmodule' => $idmodule,
+        ]);
+        $tacheProjet = $query->fetchAll(); ##recuperer les products, stocker le resultat du query. que les resultats . plusieurs resultat = fetchAll
+        return $tacheProjet;
     }
 ?>

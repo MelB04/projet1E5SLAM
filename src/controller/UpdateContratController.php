@@ -25,9 +25,7 @@ function updateContratController($twig,$db){
         $Entreprise=$_POST['Entreprise'];
         
         updateContrat($db,$IDContrat,$DateSignature,$CoutGlobal,$DateFin,$DateDebut,$Contact,$Entreprise);
-        $contrats=getAllContrats($db);
-
-        echo $twig -> render("home.html.twig", ['contrats' => $contrats]);
+        header("Location: index.php");
     }else{
         #var_dump($_GET['page']);
         #var_dump($_GET['id']);

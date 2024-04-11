@@ -6,6 +6,10 @@ function loginController($twig,$db){
     $form=[];
     #var_dump($_POST);
 
+    if (isset($_SESSION['auth'])) { 
+        header('Location: index.php');
+    }
+
     if (isset($_POST['btnPostLogin'])){
         $login=$_POST['userEmail'];
         $password=$_POST['userPassword'];
@@ -16,8 +20,10 @@ function loginController($twig,$db){
         if ($user != false) {
             if ($user['isVerif'] != 0){
                 if (password_verify($password,$user['Password'])) { 
-                    $_SESSION['login'] = $user['Email'];
-                    $_SESSION['password'] = $user['Password'];
+                    $_SESSION['auth']['id'] = $user['IDPersonne'];
+                    $_SESSION['auth']['login'] = $user['Email'];
+                    #$_SESSION['auth']['password'] = $user['Password'];
+                    $_SESSION['auth']['role'] = $user['idRole'];
                     $form = [
                         'state' => 'success',
                         'message' => "Connexion réussie !" 

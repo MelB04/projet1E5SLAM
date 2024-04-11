@@ -31,6 +31,11 @@
         'logout' => "logoutController:0",
         'verificationemail' => "verificationemailController:0",
 
+        'profil' => 'profilController:1',
+        'updateMdp' => 'updateMdpController:1',
+        'addMaitriser' => 'addMaitriserController:1',
+        'delMaitriser' => 'delMaitriserController:1',
+        
         #email
     ]; //fin de tableau
 ?>

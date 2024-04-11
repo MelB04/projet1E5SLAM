@@ -6,7 +6,7 @@ function afficherOneEntrepriseController($twig,$db){
     $idEntreprise = $_GET['idEntreprise']; 
 
     $OneEntreprise=afficherOneEntreprise($db,$idEntreprise);
-    var_dump($OneEntreprise);
+    #var_dump($OneEntreprise);
 
     echo $twig -> render("afficherOneEntreprise.html.twig", ['entreprise' => $OneEntreprise]);
 }

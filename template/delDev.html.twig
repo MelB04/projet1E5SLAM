@@ -15,7 +15,7 @@
         <div class="mb-3">
             <label for="DevLabel" class="form-label">Choisir un développeur à supprimer :</label>
             <div>
-                <select name="dev" size="1">                    
+                <select class="form-select" name="dev" size="1">                    
                     {% for dev in devs %}
                         <option value={{ dev.IDPersonne }}>{{ dev.NomPersonne }}</option>
                     {% endfor %}
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div align="center">
-            <button type="submit" class="btn btn-primary" name="btnDelDev" href="">Supprimer un développeur</button>
+            <button type="submit" onclick="return confirmerDev();" class="btn btn-primary" name="btnDelDev" href="">Supprimer un développeur</button>
         </div> 
     </form>
 
@@ -33,12 +33,12 @@
             <label for="ContratLabel" class="form-label">Choisir plusieurs Devéloppeurs à supprimer :</label>
             <div>
                 {% for dev in devs %}
-                    <input type="checkbox" name="dev[]" value={{ dev.IDPersonne }}>{{ dev.NomPersonne }}<br>
+                    <input type="checkbox" name="dev[]" value={{ dev.IDPersonne }}>{{ dev.NomPersonne }} {{ dev.PrenomPersonne }}<br>
                 {% endfor %}
             </div>
         </div>
         <div align="center">
-            <button type="submit" class="btn btn-primary" name="btnDelPlusieursDevs" href="">Supprimer Plusieurs Développeurs</button>
+            <button type="submit" onclick="return confirmerDev();" class="btn btn-primary" name="btnDelPlusieursDevs" href="">Supprimer Plusieurs Développeurs</button>
         </div> 
     </form>
 </div>

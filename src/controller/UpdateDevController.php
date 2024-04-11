@@ -2,11 +2,13 @@
 
 function updateDevController($twig,$db){
     include_once '../src/model/ProductModel.php';  ##on inclut pour apres
-    
+
+    $form = [];
+
     $idDev=$_GET["id"];
 
     $oneDev=labelOneDev($db,$idDev);
-    var_dump($oneDev);
+    #var_dump($oneDev);
 
     $personnes= getAllPersonnes($db);
     $indices= getAllIndices($db);
@@ -17,7 +19,7 @@ function updateDevController($twig,$db){
         
         updateDev($db,$Indice,$Personne);
 
-        echo $twig -> render("home.html.twig", []);
+        header("Location: index.php");
     }else{
        
         echo $twig->render("updateDev.html.twig",['updateDev' => $oneDev, 'indices' => $indices, 'personnes' => $personnes]);

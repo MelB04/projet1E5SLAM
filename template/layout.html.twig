@@ -1,66 +1,156 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>      
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Simpleduc - {% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" crossorigin="anonymous">
-</head>
-<body class="d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Simpleduc</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle Navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a href="?page=home" class="nav-link">Accueil</a>
-                    </li>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Simpleduc -
+			{% block title %}{% endblock %}
+		</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="js/confirmation.js"></script>
+		<script src="js/animation.js"></script>
 
-                    {% if session.login is defined %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle link-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Gérer les Contrats
-                            </a>
-                            <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="?page=addContrat">Ajouter un Contrat</a></li>
-                            <li><a class="dropdown-item" href="?page=delContrat">Supprimer un Contrat</a></li>
+	</head>
+	<body class="d-flex flex-column min-vh-100">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container">
+				<a class="navbar-brand" href="#">Simpleduc</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle Navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="col-10 navbar-nav mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a href="?page=home" class="nav-link">Accueil</a>
+						</li>
+
+						{% if session.auth is defined %}
+							{% if session.auth.role == 2 %}
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle link-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Contrats
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<a class="dropdown-item" href="?page=addContrat">Ajouter un Contrat</a>
+										</li>
+										<li>
+											<a class="dropdown-item" href="?page=delContrat">Supprimer un ou plusieurs Contrat(s)</a>
+										</li>
+									</ul>
+								</li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle link-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Contacts
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<a class="dropdown-item" href="?page=addContact">Ajouter un contact</a>
+										</li>
+									</ul>
+								</li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle link-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Développeurs
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<a class="dropdown-item" href="?page=addDev">Ajouter un développeur</a>
+										</li>
+										<li>
+											<a class="dropdown-item" href="?page=delDev">Supprimer un développeur</a>
+										</li>
+									</ul>
+								</li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle link-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Indices
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<a class="dropdown-item" href="?page=addIndice">Ajouter un indice</a>
+										</li>
+									</ul>
+								</li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle link-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Entreprises
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<a class="dropdown-item" href="?page=addEntreprise">Ajouter une entreprise</a>
+										</li>
+									</ul>
+								</li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle link-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Personnes
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<a class="dropdown-item" href="?page=addPersonne">Ajouter une Personne</a>
+										</li>
+										<li>
+											<a class="dropdown-item" href="?page=delPersonne">Supprimer une ou plusieurs Personne(s)</a>
+										</li>
+									</ul>
+								</li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle link-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Outils
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<a class="dropdown-item" href="?page=addOutil">Ajouter un outil</a>
+										</li>
+									</ul>
+								</li>
+							{% endif %}
+                            
+                        {% else %}
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a href="?page=login" class="nav-link">Se connecter</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="?page=register" class="nav-link">S'inscrire</a>
+                                </li>
                             </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="?page=logout" class="nav-link">Se déconnecter</a>
-                        </li>
-                        
-                    {% else %}
-                        <li class="nav-item">
-                            <a href="?page=login" class="nav-link">Se connecter</a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a href="?page=register" class="nav-link">S'inscrire</a>
-                        </li>
+                        {% endif %}
+                    </ul>
+                    {% if session.auth is defined %}
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="?page=profil">
+                                    Profil
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="?page=logout" class="nav-link text-danger">Se déconnecter</a>
+                            </li>
+                        </ul>
                     {% endif %}
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="bg-light rounded px-5 py-4  mb-5">
-        <div class="container">
-            <h1>Simpleduc</h1>
-        </div>
-    </div>
-    
-    {% block content %}{% endblock %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-</body>
 
-<footer class="mt-auto p-3 bg-dark text-light">
-    <div class="container">
-        <p>
-            Simpleduc
-        </p>
-    </div>
-</footer>
+				</div>
+			</div>
+		</nav>
+		<div class="bg-light rounded px-5 py-4  mb-5">
+			<div class="container">
+				<h1>Simpleduc</h1>
+			</div>
+		</div>
+
+		{% block content %}{% endblock %}
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+		<footer class="mt-auto p-3 bg-dark text-light">
+			<div class="container">
+				<p>
+					Simpleduc
+				</p>
+			</div>
+		</footer>
+	</body>
 </html>

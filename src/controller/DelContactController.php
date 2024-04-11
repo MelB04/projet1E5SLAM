@@ -7,7 +7,7 @@ function delContactController($twig,$db){
         $idPersonne=$_GET['contact'];
         delContact($db,$idPersonne);
 
-        echo $twig -> render("home.html.twig", []);
+        header("Location: index.php");
     }
 }
 

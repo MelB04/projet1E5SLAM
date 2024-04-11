@@ -1,0 +1,98 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Fiche de l'utilisateur {% endblock %} 
+
+{% block content %}
+    <div class="container text-dark mb-5 mt-5"> 
+        {% if session.auth is defined %}
+            <h1 class="mb-5">Fiche utilisateur</h1>
+            
+            <div class="mb-3 d-md-flex justify-content-md-end">
+                <a role="button" class="btn btn-info me-2" href="?page=updateMdp">Modifier son mot de passe</a>
+            </div>
+
+            <h2 class="mb-5">Les informations du compte</h2>
+            <p>Nom : {{ user.Nom }}</p>
+            <p>Prénom : {{ user.Prenom }}</p> 
+            <p>
+                Email : {{ user.Email }}
+            </p>
+            <p>Role : {{ userrole.label }}</p>
+
+            {% if switch != true %}
+                {% if userdev %}
+                    <h2 class="mb-5 mt-5">Vous êtes un développeur(euse) :</h2>
+
+                    <div class="mb-3 d-md-flex justify-content-md-end">
+                        <a role="button" class="btn btn-info me-2" href="?page=addMaitriser">M'ajouter des compétences</a>
+                    </div>
+
+
+                    <h3 class="mt-2 mb-2">Vos compétences :</h3>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Libellé</th>
+                            <th scope="col">Version</th>
+                            <th scope="col">Supprimer ?</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for outil in Outils %}
+                            <tr>
+                                <td>{{ outil.Libelle }}</td>
+                                <td>{{ outil.Version }}</td>
+                                <td><a href="?page=delMaitriser&idCode={{ outil.Code }}">Supprimer la compétence ?</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    {% if dernierprojet and derniereequipe and tachesprojet %}
+                        <h3 class="mt-5 mb-2">Votre dernier projet : {{ dernierprojet.Label }}</h3>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">IDTache</th>
+                                    <th scope="col">Tache</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for tacheprojet in tachesprojet %}
+                                    <tr>
+                                        <td>{{ tacheprojet.IDTache }}</td>
+                                        <td>{{ tacheprojet.Libelle }}</td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+
+                        <h3 class="mt-5 mb-2">L'équipe correspondante : N°{{ derniereequipe.IDEquipe }}</h3>
+                        
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">Personne</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for membreequipe in membresequipe %}
+
+                                <tr>
+                                    <td>{{ membreequipe.Nom }}</td>
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <h3 class="mt-5 mb-2">Aucun dernier projet</h3>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% else %}
+            <h2>Vous n'êtes pas connecté</h2>
+        {% endif %}
+    </div>
+{% endblock %}

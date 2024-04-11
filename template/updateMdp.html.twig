@@ -1,0 +1,32 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Page {{ title }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <h1 class="text-dark mb-5 mt-5">Modifier le mot de passe</h1>
+
+  <div class="alert alert-{{ form['state'] }}" role="alert">
+    {{ form['message'] }}
+  </div>
+
+  <form action="index.php?page=updateMdp" method="POST"> <!-- je veux que tu ailles sur ma route addProduct en méthode POST => utilisation de la variable globale $_POST-->
+      <div class="mb-3">
+        <label for="actupassword">Mot de passe actuel</label>
+        <p><input type="password" placeholder="Mot de passe actuel" class="form-control" required name="actupassword" id="actupassword"></p>
+      </div>
+      <div class="mb-3">
+        <label for="newpassword">Nouveau mot de passe</label>
+        <p><input type="password" placeholder="Entrer le nouveau mot de passe" class="form-control" id="newpassword" name="newpassword" required></p>
+      </div>
+      <div class="mb-3">
+        <label for="confnewpassword">Confirmez le nouveau mot de passe</label>
+        <p><input type="password" placeholder="Confirmer le nouveau mot de passe" class="form-control" id="confnewpassword" name="confnewpassword" required></p>
+      </div>
+    <button type="submit" class="btn btn-primary" name="btnUpdateMdp">Modifier le mot de passe</button> <!-- On va vouloir détecter quand on appuie-->
+  </form>
+</div>
+{% endblock %}

@@ -8,11 +8,9 @@ function addContactController($twig,$db){
         $IDPersonne = $_POST['Personne'];
         saveContact($db,$IDPersonne);
         
-        echo $twig ->render ('home.html.twig',[]);
+        header("Location: index.php?page=addContact");
     }
     
-    if(!isset($_POST['btnAddContact'])){
-        echo $twig ->render ('addContact.html.twig',["personnes" => $personnes]);
-    }
+    echo $twig ->render ('addContact.html.twig',["personnes" => $personnes]);
 
 }

@@ -15,7 +15,7 @@
         <div class="mb-3">
             <label for="ContratLabel" class="form-label">Choisir une Contrat à supprimer :</label>
             <div>
-                <select name="Contrat" size="1">                    
+                <select class="form-select" name="Contrat" size="1">                    
                     {% for contrat in contrats %}
                         <option value={{ contrat.IDContrat }}>{{ contrat.DateSignature }} avec {{ contrat.NomContact }} comme contact pour {{ contrat.NomEntreprise }}</option>
                     {% endfor %}

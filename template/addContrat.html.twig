@@ -11,6 +11,10 @@
   </div>
 </div>
 <div class="container mb-5">
+  <div class="alert alert-{{ form['state'] }}" role="alert">
+    {{ form['message'] }}
+  </div>
+  
   <form action="index.php?page=addContrat" method="POST">
     <div class="mb-3">
       <label for="DateSignature" class="form-label">Date de Signature</label>
@@ -37,6 +41,7 @@
                 {% endfor %}
             </select>
         </div>
+        <span>Si le contact n'est pas présent dans la liste, veuillez l'ajouter avec le lien <a href="?page=addContact">Ajouter un contact</a></span>
     </div>
     <div class="mb-3">
         <label for="Entreprise" class="form-label">Choisir une entreprise :</label>
@@ -47,6 +52,7 @@
                 {% endfor %}
             </select>
         </div>
+        <span>Si l'entreprise que vous cherchez n'est pas présente dans la liste, veuillez l'ajouter avec le lien <a href="?page=addEntreprise">Ajouter une entreprise</a></span>
     </div>
     <button type="submit" class="btn btn-primary" name="btnAddContrat">Ajouter un Contrat</button>
   </form>

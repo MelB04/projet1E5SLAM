@@ -8,15 +8,15 @@
 <div class="bg-light rounded px-3 py-3">
   <div class="container">
     {% if updateContact == NULL %}
-    <h1>L'élément Contact n'existe plus</h1>
+      <h1>L'élément Contact n'existe plus</h1>
     {% else %}
-    <h1>Modifier le Contact n° {{ updateContact.IDPersonne }}</h1>
+      <h1>Modifier le Contact n° {{ updateContact.IDPersonne }}</h1>
     {% endif %}
   </div>
 </div>
 <div class="container mb-5">   
   {% if updateContact != NULL %}
-  <form action="?page=updateContact&id={{ updateContact.IDPersonne }}" method="POST">
+  <form action="?page=updateContact&idContact={{ updateContact.IDPersonne }}" method="POST">
     <div class="mb-3">
       <label for="Nom du Contact" class="form-label">Nom du Contact</label>
       <input type="nom" class="form-control" id="Nom du Contact" name="Nom du Contact" value="{{ updateContact.NomContact }}">

@@ -12,7 +12,7 @@
     require_once "../src/database.php";
     use PHPMailer\PHPMailer\PHPMailer;
     
-    
+    #var_dump($_SESSION);
     $twig=initTwig("../template/"); #initialiser notre instance de twig et stocker dans twig
     $db=getConnection($config); #initialiser notre instance de db et stocker dans db
     $actionController = initRouter($routes,$db); //action qui va etre réaliser dans mon application

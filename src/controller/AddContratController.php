@@ -3,6 +3,7 @@
 function addContratController($twig,$db){
     include_once '../src/model/ProductModel.php';  ##on inclut pour apres
     
+    $form=[];
     $contacts= getAllContacts($db);
     #var_dump($contacts);
     $entreprises = getAllEntreprises($db);
@@ -22,16 +23,23 @@ function addContratController($twig,$db){
 
             #var_dump($Contact);
 
+            $form = [
+                'state' => 'success',
+                'message' => 'Le contrat a bien été ajouté !'
+                ];
+
             saveContrat($db,$DateSignature,$CoutGlobal,$DateFin,$DateDebut,$Contact,$Entreprise);
+
         }else{
             if(isset($_POST['btnAddContrat'])==true){
-                echo '<script language="Javascript">
-                    alert ("Tu as oublié de saisir un ou des champs." )
-                    </script>';
+                $form = [
+                    'state' => 'danger',
+                    'message' => 'Manque d\'informations !'
+                    ];
             }
         }
     }
-    echo $twig -> render("addContrat.html.twig", ['entreprises' => $entreprises, 'contacts' => $contacts]);
+    echo $twig -> render("addContrat.html.twig", ['entreprises' => $entreprises, 'contacts' => $contacts, 'form' => $form]);
 }
 
 ?>

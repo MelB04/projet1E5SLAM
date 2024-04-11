@@ -1,179 +1,289 @@
 {% extends "layout.html.twig" %}
 
 {% block title %}
-    Simpleduc
+	Simpleduc
 {% endblock %}
 
 {% block content %}
-    <div class="container mb-5">
-        <h1 class="text-dark">
-            Simpleduc
-        </h1>
+	<div class="loader" id="loader">
 
-        {% if session.login is defined %}
-        <h2 class="text-dark py-4">Affichage des Contrats sous forme de Tableau</h2>
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">DateSignature</th>
-                <th scope="col">Cout Global</th>
-                <th scope="col">Date de Début</th>
-                <th scope="col">Date de Fin</th>
-                <th scope="col">Contact</th>
-                <th scope="col">Entreprise</th>
-                <th scope="col">Modifier ?</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for contrat in contrats %}
-                <tr>
-                    <th scope="row">{{ contrat.IDContrat }}</th>
-                    <td>{{ contrat.DateSignature  | date("d-m-Y") }}</td>
-                    <td>{{ contrat.CoutGlobal }}</td>
-                    <td>{{ contrat.DateDebut  | date("d-m-Y") }}</td>
-                    <td>{{ contrat.DateFin  | date("d-m-Y")}}</td>
-                    <td>{{ contrat.NomContact }}</td>
-                    <td>{{ contrat.NomEntreprise }}</td>
-                    <td><a href="?page=updateContrat&id={{ contrat.IDContrat }}">Modifier ?</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+	</div>
 
-        <h2 class="text-dark py-4">Affichage des Personnes sous forme de Tableau</h2>
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Prénom</th>
-                <th scope="col">Modifier ?</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for personne in Personnes %}
-                <tr>
-                    <th scope="row">{{ personne.IDPersonne }}</th>
-                    <td>{{ personne.Nom }}</td>
-                    <td>{{ personne.Prenom }}</td>
-                    <td><a href="?page=updatePersonne&id={{ personne.IDPersonne }}">Modifier ?</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+	<div class="container mb-5" id="isLoad">
 
+		{% if session.auth is defined %}
+			<h2 class="text-dark py-4">Affichage des Contrats sous forme de Tableau</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">DateSignature</th>
+						<th scope="col">Cout Global</th>
+						<th scope="col">Date de Début</th>
+						<th scope="col">Date de Fin</th>
+						<th scope="col">Contact</th>
+						<th scope="col">Entreprise</th>
+						{% if session.auth.role == 2 %}
+							<th scope="col">Modifier ?</th>
+						{% endif %}
+					</tr>
+				</thead>
+				<tbody>
+					{% for contrat in contrats %}
+						<tr>
+							<th scope="row">{{ contrat.IDContrat }}</th>
+							<td>{{ contrat.DateSignature  | date("d-m-Y") }}</td>
+							<td>{{ contrat.CoutGlobal }}</td>
+							<td>{{ contrat.DateDebut  | date("d-m-Y") }}</td>
+							<td>{{ contrat.DateFin  | date("d-m-Y")}}</td>
+							<td>{{ contrat.NomContact }}</td>
+							<td>{{ contrat.NomEntreprise }}</td>
+							{% if session.auth.role == 2 %}
+								<td>
+									<a href="?page=updateContrat&id={{ contrat.IDContrat }}">Modifier ?</a>
+								</td>
+							{% endif %}
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 
-        <!---->
+			<h2 class="text-dark py-4">Affichage des Personnes sous forme de Tableau</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Nom</th>
+						<th scope="col">Prénom</th>
+						{% if session.auth.role == 2 %}
+							<th scope="col">Modifier ?</th>
+							<th scope="col">voir profil ?</th>
+						{% endif %}
 
-
-        <h2 class="text-dark py-4">Affichage des entreprises sous forme de Tableau</h2>
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Entreprise</th>
-                <th scope="col">Modifier ?</th>
-                <th scope="col">Voir ?</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for entreprise in entreprises %}
-                <tr>
-                    <th scope="row">{{ entreprise.IDEntre }}</th>
-                    <td>{{ entreprise.Nom }}</td>
-                    <td><a href="?page=updateEntreprise&idEntreprise={{ entreprise.IDEntre }}">Modifier ?</a></td>
-                    <td><a href="?page=afficherOneEntreprise&idEntreprise={{ entreprise.IDEntre }}">Voir le contenu ?</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
-        <h2 class="text-dark py-4">Affichage des Contacts sous forme de Tableau</h2>
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nom</th>
-                <!--<th scope="col">Modifier ?</th>-->
-              </tr>
-            </thead>
-            <tbody>
-                {% for contact in contacts %}
-                <tr>
-                    <th scope="row">{{ contact.IDPersonne }}</th>
-                    <td>{{ contact.Nom }}</td>
-                    <!--<td><a href="?page=updateContact&id={{ contact.IDPersonne }}">Modifier ?</a></td>-->
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+					</tr>
+				</thead>
+				<tbody>
+					{% for personne in Personnes %}
+						<tr>
+							<th scope="row">{{ personne.IDPersonne }}</th>
+							<td>{{ personne.Nom }}</td>
+							<td>{{ personne.Prenom }}</td>
+							{% if session.auth.role == 2 %}
+								<td>
+									<a href="?page=updatePersonne&id={{ personne.IDPersonne }}">Modifier ?</a>
+								</td>
+								{% if session.auth.id == personne.IDPersonne %}
+									<td>
+										<a href="?page=profil&user">Voir le profil ?</a>
+									</td>
+								{% else %}
+									<td>
+										<a href="?page=profil&user={{ personne.Email }}">Voir le profil ?</a>
+									</td>
+								{% endif %}
+							{% endif %}
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 
 
-        <h2 class="text-dark py-4">Affichage des Outils sous forme de Tableau</h2>
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Libelle</th>
-                <th scope="col">Version</th>
-                <th scope="col">Modifier ?</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for outil in outils %}
-                <tr>
-                    <th scope="row">{{ outil.Code }}</th>
-                    <td>{{ outil.Libelle }}</td>
-                    <td>{{ outil.Version }}</td>
-                    <td><a href="?page=updateOutil&id={{ outil.Code }}">Modifier ?</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+			<!---->
 
-        
-        <h2 class="text-dark py-4">Affichage des Développeurs sous forme de Tableau</h2>
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Indice</th>
-                <th scope="col">Modifier ?</th>
-            </tr>
-            </thead>
-            <tbody>
-                {% for dev in devs %}
-                <tr>
-                    <th scope="row">{{ dev.IDPersonne }}</th>
-                    <td>{{ dev.NomPersonne }}</th>
-                    <td>{{ dev.CoutHoraire }}</td>
-                    <td><a href="?page=updateDev&id={{ dev.IDPersonne }}">Modifier ?</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
 
-        <h2 class="text-dark py-4">Affichage des Indices sous forme de Tableau</h2>
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Cout Horaires</th>
-                <th scope="col">Modifier ?</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for Indice in Indices %}
-                <tr>
-                    <th scope="row">{{ Indice.IDIndice }}</th>
-                    <td>{{ Indice.CoutHoraire }}</td>
-                    <td><a href="?page=updateIndice&id={{ Indice.IDIndice }}">Modifier ?</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% endif %}
-    </div>
+			<h2 class="text-dark py-4">Affichage des entreprises sous forme de Tableau</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Entreprise</th>
+						{% if session.auth.role == 2 %}
+							<th scope="col">Modifier ?</th>
+							<th scope="col">Voir ?</th>
+						{% endif %}
+
+					</tr>
+				</thead>
+				<tbody>
+					{% for entreprise in entreprises %}
+						<tr>
+							<th scope="row">{{ entreprise.IDEntre }}</th>
+							<td>{{ entreprise.Nom }}</td>
+							{% if session.auth.role == 2 %}
+								<td>
+									<a href="?page=updateEntreprise&idEntreprise={{ entreprise.IDEntre }}">Modifier ?</a>
+								</td>
+								<td>
+									<a href="?page=afficherOneEntreprise&idEntreprise={{ entreprise.IDEntre }}">Voir le contenu ?</a>
+								</td>
+							{% endif %}
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+			<h2 class="text-dark py-4">Affichage des Contacts sous forme de Tableau</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Nom</th>
+						<!--<th scope="col">Modifier ?</th>-->
+					</tr>
+				</thead>
+				<tbody>
+					{% for contact in contacts %}
+						<tr>
+							<th scope="row">{{ contact.IDPersonne }}</th>
+							<td>{{ contact.Nom }}</td>
+							<!--<td><a href="?page=updateContact&id={{ contact.IDPersonne }}">Modifier ?</a></td>-->
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+
+			<h2 class="text-dark py-4">Affichage des Outils sous forme de Tableau</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Libelle</th>
+						<th scope="col">Version</th>
+						{% if session.auth.role == 2 %}
+							<th scope="col">Modifier ?</th>
+						{% endif %}
+
+					</tr>
+				</thead>
+				<tbody>
+					{% for outil in outils %}
+						<tr>
+							<th scope="row">{{ outil.Code }}</th>
+							<td>{{ outil.Libelle }}</td>
+							<td>{{ outil.Version }}</td>
+							{% if session.auth.role == 2 %}
+								<td>
+									<a href="?page=updateOutil&id={{ outil.Code }}">Modifier ?</a>
+								</td>
+							{% endif %}
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+
+			<h2 class="text-dark py-4">Affichage des Développeurs sous forme de Tableau</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Nom</th>
+						<th scope="col">Indice</th>
+						{% if session.auth.role == 2 %}
+							<th scope="col">Modifier ?</th>
+						{% endif %}
+
+					</tr>
+				</thead>
+				<tbody>
+					{% for dev in devs %}
+						<tr>
+							<th scope="row">{{ dev.IDPersonne }}</th>
+							<td>{{ dev.NomPersonne }}</td>
+							<td>{{ dev.CoutHoraire }}</td>
+							{% if session.auth.role == 2 %}
+								<td>
+									<a href="?page=updateDev&id={{ dev.IDPersonne }}">Modifier ?</a>
+								</td>
+							{% endif %}
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+			<h2 class="text-dark py-4">Affichage des Indices sous forme de Tableau</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Cout Horaires</th>
+						{% if session.auth.role == 2 %}
+							<th scope="col">Modifier ?</th>
+						{% endif %}
+
+					</tr>
+				</thead>
+				<tbody>
+					{% for Indice in Indices %}
+						<tr>
+							<th scope="row">{{ Indice.IDIndice }}</th>
+							<td>{{ Indice.CoutHoraire }}</td>
+							{% if session.auth.role == 2 %}
+								<td>
+									<a href="?page=updateIndice&id={{ Indice.IDIndice }}">Modifier ?</a>
+								</td>
+							{% endif %}
+
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+		{% else %}
+
+
+			<div class="carrousel-container">
+				<div id="carrouselItems">
+					<div class="slide fadeanimation">
+						<img class="carrousel-image" src="img/image1.png">
+					</div>
+
+					<div class="slide fadeanimation">
+						<img class="carrousel-image" src="img/image2.png">
+					</div>
+
+					<div class="slide fadeanimation">
+						<img class="carrousel-image" src="img/image3.png">
+					</div>
+				</div>
+				<div class="fleche">
+					<a class="prev" id="prev">&#10094;</a>
+					<a class="next" id="next">&#10095;</a>
+				</div>
+			</div>
+
+			<div style="text-align:center" id="point"></div>
+
+			<h2 class="text-dark py-5">Notre entreprise</h2>
+			<div class="section section1">
+				<div class="imageSection"><img src="img/image1.png"></div>
+				<div class="texteSection">
+					<h3>Simpleduc</h3>
+					<p>Simpléduc est une ESN (Entreprise de services du numérique) fondée en 2013 à Arras (62000). Son activité principale est la création de logiciels innovants dans le secteur de l’éducation. Elle regroupe des développeurs spécialisés dans les nouvelles technologies, notamment dans la création de sites internet et de solutions mobiles.</p>
+				</div>
+
+			</div>
+			<div class="section section2">
+				<div class="texteSection">
+					<h3>La partie développement</h3>
+					<p>Avec l’engouement des MOOCS et le développement d’outils numériques comme les smartphones et les tablettes, Simpléduc se concentre sur le développement d’applications sur mesure pour ses clients. Pour améliorer son efficacité et honorer ses contrats, l’entreprise développe également une
+						solution de gestion de projets en interne.L’entreprise Simpléduc mobilise des développeurs afin de réaliser un outil de gestion de projets. Celui-ci a pour objectif de suivre en temps réel les projets d’entreprise ainsi que les équipes qui les réalisent.</p>
+				</div>
+				<div class="imageSection"><img src="img/image2.png"></div>
+				
+			</div>
+			<div class="section section3">
+				<div class="imageSection"><img src="img/image3.png"></div>
+				<div class="texteSection">
+					<h3>La partie Réseau</h3>
+					<p>L'entreprise se concentre également sur la partie réseaux des applications des clients. Elle dispose également de techniciens réseau qui travaillent sur la mise en place de l’infrastructure de l’entreprise.</p>
+				</div>
+			</div>
+
+
+		{% endif %}
+
+	</div>
+
 {% endblock %}

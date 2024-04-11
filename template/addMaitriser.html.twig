@@ -1,0 +1,31 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Page Ajouter Compétences
+{% endblock %}
+
+{% block content %}
+<div class="bg-light rounded px-3 py-3">
+    <div class="container">
+      <h1>M'ajouter des compétences</h1>
+    </div>
+  </div>
+  <div class="container mb-5">
+      
+    <form action="index.php?page=addMaitriser" method="POST">
+      <div class="mb-3">
+        <label for="IDOutil" class="form-label">Choisir une compétence :</label>
+        <div>
+            <select class="form-select" name="IDOutil" size="1">
+                <option value="">Choisir une compétence</option>                    
+                {% for outil in outils %}
+                    <option value={{ outil.Code }}>{{ outil.Libelle }}</option>
+                {% endfor %}
+            </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" name="btnAddMaitriser">M'ajouter cette compétence</button>
+    </form>
+</div>
+
+{% endblock %}

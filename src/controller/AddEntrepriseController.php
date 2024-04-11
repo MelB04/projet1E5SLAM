@@ -5,6 +5,8 @@ function addEntrepriseController($twig,$db){
     if (isset($_POST['btnAddEntreprise']) && (isset($_POST['EntrepriseLabel']))) {
         $nom = htmlspecialchars($_POST['EntrepriseLabel']);
         saveEntreprise($db,$nom);
+
+        header("Location: index.php?page=addEntreprise");
     }   
 
     echo $twig ->render ('addEntreprise.html.twig',[]);

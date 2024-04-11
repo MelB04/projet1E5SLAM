@@ -15,7 +15,7 @@
         <div class="mb-3">
             <label for="PersonneLabel" class="form-label">Choisir une Contrat à supprimer :</label>
             <div>
-                <select name="personne" size="1">                    
+                <select class="form-select" name="personne" size="1">                    
                     {% for personne in personnes %}
                         <option value={{ personne.IDPersonne }}>{{ personne.Nom }} {{ personne.Prenom }}</option>
                     {% endfor %}
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div align="center">
-            <button type="submit" class="btn btn-primary" name="btnDelPersonne" href="">Supprimer une Personne</button>
+            <button type="submit" onclick="return confirmerPersonne();" class="btn btn-primary" name="btnDelPersonne" href="">Supprimer une Personne</button>
         </div> 
     </form>
 
@@ -38,7 +38,7 @@
             </div>
         </div>
         <div align="center">
-            <button type="submit" class="btn btn-primary" name="btnDelPlusieursPersonnes" href="">Supprimer Plusieurs Personnes</button>
+            <button type="submit" onclick="return confirmerPersonne();" class="btn btn-primary" name="btnDelPlusieursPersonnes" href="">Supprimer Plusieurs Personnes</button>
         </div> 
     </form>
 </div>
