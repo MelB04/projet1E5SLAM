@@ -29,10 +29,10 @@ class Mail {
         ]);       
         
         if(!$mail->send()) {                
-            echo 'Erreur, message non envoyé.';                
-            echo 'Mailer Error: ' . $mail->ErrorInfo;        
+            // echo 'Erreur, message non envoyé.';                
+            // echo 'Mailer Error: ' . $mail->ErrorInfo;        
         } else {                
-            echo 'Le message a bien été envoyé !';
+            // echo 'Le message a bien été envoyé !';
         }
     }
 
@@ -58,10 +58,10 @@ class Mail {
         ]);       
         
         if(!$mail->send()) {                
-            echo 'Erreur, message non envoyé.';                
-            echo 'Mailer Error: ' . $mail->ErrorInfo;        
+            // echo 'Erreur, message non envoyé.';                
+            // echo 'Mailer Error: ' . $mail->ErrorInfo;        
         } else {                
-            echo 'Le message a bien été envoyé !';
+            // echo 'Le message a bien été envoyé !';
         }
     }
 }

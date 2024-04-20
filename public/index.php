@@ -2,7 +2,9 @@
     session_start();
 
     #var_dump($_SESSION);
-    
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
 
     require_once "../vendor/autoload.php"; //stimule l'apport d'un fichier 
     require_once "../config/routes.php"; //stimule l'apport d'un fichier routes.php 

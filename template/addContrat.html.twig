@@ -54,7 +54,13 @@
         </div>
         <span>Si l'entreprise que vous cherchez n'est pas présente dans la liste, veuillez l'ajouter avec le lien <a href="?page=addEntreprise">Ajouter une entreprise</a></span>
     </div>
-    <button type="submit" class="btn btn-primary" name="btnAddContrat">Ajouter un Contrat</button>
+
+    <p id="messageDateErreur" class="erreurDate hidden">Erreur, il y a un problème dans la date de début et de fin.</p>
+
+    <button type="submit" class="btn btn-primary" name="btnAddContrat" id="addOrUpdateContrat">Ajouter un Contrat</button>
   </form>
 </div>
+
+<script src="js/verificationContrat.js"></script>
+
 {% endblock %}

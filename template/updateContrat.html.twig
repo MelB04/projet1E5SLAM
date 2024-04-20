@@ -61,9 +61,14 @@
             </select>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary" name="btnUpdContrat">Modifier le Contrat n° {{ updateContrat.IDContrat }}</button> <!-- On va vouloir détecter quand on appuie-->
+    <p id="messageDateErreur" class="erreurDate hidden">Erreur, il y a un problème dans la date de début et de fin.</p>
+
+    <button type="submit" class="btn btn-primary" name="btnUpdContrat" id="addOrUpdateContrat">Modifier le Contrat n° {{ updateContrat.IDContrat }}</button> <!-- On va vouloir détecter quand on appuie-->
   </form> 
 	{% endif %}
-      
+    
 </div>
+
+<script src="js/verificationContrat.js"></script>
+
 {% endblock %}

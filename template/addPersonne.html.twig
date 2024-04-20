@@ -22,24 +22,31 @@
     <div class="m-1">
       <label for="userLastname">Nom</label>
       <input type="text" id="userLastname" class="form-control" name='userLastname' placeholder="Nom" autofocus="">
+      <p id="messageLastname" class="erreurRegex hidden">Erreur, le champs doit contenir au moins deux caractères et au moins une lettre (minuscule ou majuscule).</p>
     </div>
     <div class="m-1">
         <label for="userFirstname">Prénom</label>
         <input type="text" id="userFirstname" class="form-control" name='userFirstname' placeholder="Prénom" autofocus="">
+        <p id="messageFirstname" class="erreurRegex hidden">Erreur, le champs doit contenir au moins deux caractères et au moins une lettre (minuscule ou majuscule).</p>
     </div>
     <div class="m-1">
         <label for="userEmail">Adresse courriel</label>
         <input type="email" id="userEmail" name="userEmail" class="form-control" placeholder="Adresse courriel" autofocus="">
+        <p id="messageEmail" class="erreurRegex hidden">Erreur, l'adresse e-mail doit être au format valide, par exemple : exemple@domaine.com.</p>
     </div>
     <div class="m-1">
         <label for="userPassword">Mot de passe</label>
         <input type="password" id="userPassword" name="userPassword" class="form-control" placeholder="Mot de passe">
+        <p id="messagePassword" class="erreurRegex hidden">Erreur, le mot de passe doit contenir au moins huit caractères, inclure au moins une lettre minuscule, une lettre majuscule et un caractère spécial.</p>
     </div>
     <div class="m-1">
         <label for="userPasswordConfirm">Confirmation du mot de passe</label>
         <input type="password" id="userPasswordConfirm" name="userPasswordConfirm" class="form-control" placeholder="Mot de passe">
     </div>
-    <button type="submit" class="btn btn-primary" name="btnAddPersonne">Ajouter une Personne</button>
+    <button type="submit" class="btn btn-primary" name="btnAddPersonne" id="btnAddPersonneOrRegister">Ajouter une Personne</button>
   </form>
 </div>
+
+<script src="js/verificationRegister.js"></script>
+
 {% endblock %}

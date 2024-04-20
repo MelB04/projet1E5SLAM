@@ -2,15 +2,9 @@
 
 function updateContratController($twig,$db){
     include_once '../src/model/ProductModel.php';  ##on inclut pour apres
-    
     $updateContrat= labelOneContrat($db,$_GET['id']);
-    #var_dump($updateContrat);
-
     $contacts= getAllContacts($db);
-    #var_dump($contacts);
-
     $entreprises = getAllEntreprises($db);
-    #var_dump($entreprises);
     
     if(isset($_POST['btnUpdContrat'])){ 
         $IDContrat = $_GET['id']; 
@@ -27,10 +21,9 @@ function updateContratController($twig,$db){
         updateContrat($db,$IDContrat,$DateSignature,$CoutGlobal,$DateFin,$DateDebut,$Contact,$Entreprise);
         header("Location: index.php");
     }else{
-        #var_dump($_GET['page']);
-        #var_dump($_GET['id']);
-        echo $twig->render("updateContrat.html.twig",['updateContrat' => $updateContrat, 'contacts' => $contacts, 'entreprises' => $entreprises]);
-        
+        echo $twig->render("updateContrat.html.twig",
+            ['updateContrat' => $updateContrat, 
+            'contacts' => $contacts, 
+            'entreprises' => $entreprises]);  
     }
 }
-?>

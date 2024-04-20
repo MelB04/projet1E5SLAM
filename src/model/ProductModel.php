@@ -20,7 +20,8 @@
     }
 
     function getAllContrats($db){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup        
-        $query = $db -> prepare("SELECT Contrat.IDContrat, Contrat.DateSignature, Contrat.CoutGlobal, Contrat.DateDebut, Contrat.DateFin, Entreprise_Cliente.Nom AS NomEntreprise, Personne.Nom AS NomContact##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+        $query = $db -> prepare("SELECT Contrat.IDContrat, Contrat.DateSignature, Contrat.CoutGlobal, Contrat.DateDebut, 
+                                Contrat.DateFin, Entreprise_Cliente.Nom AS NomEntreprise, Personne.Nom AS NomContact ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
                                 FROM Contrat
                                 INNER JOIN Entreprise_Cliente ON Entreprise_Cliente.IDEntre = Contrat.IDEntre
                                 INNER JOIN Contact ON Contact.IDPersonne = Contrat.IDPersonne 
@@ -31,9 +32,11 @@
     }
     
     function saveContrat($db,$DateSignature,$CoutGlobal,$DateFin,$DateDebut,$Contact,$Entreprise){
-        #echo "INSERT INTO Contrat(DateSignature,CoutGlobal, DateDebut, DateFin, IDPersonne, IDEntre) VALUES ($DateSignature,$CoutGlobal,$DateDebut,$DateFin, $Contact, $Entreprise)";
-        $query = $db -> prepare("INSERT INTO Contrat(DateSignature,CoutGlobal, DateDebut, DateFin, IDPersonne, IDEntre) 
-                                VALUES (:DateSignature,:CoutGlobal,:DateDebut,:DateFin, :IDPersonne, :IDEntre)");
+
+        $query = $db -> prepare("
+            INSERT INTO 
+            Contrat(DateSignature,CoutGlobal, DateDebut, DateFin, IDPersonne, IDEntre) 
+            VALUES (:DateSignature,:CoutGlobal,:DateDebut,:DateFin, :IDPersonne, :IDEntre)");
         $query -> execute([
             'DateSignature' => $DateSignature,
             'CoutGlobal' => $CoutGlobal,
@@ -53,7 +56,10 @@
     }
     
     function labelOneContrat($db,$idContrat){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
-        $query = $db -> prepare("SELECT Contrat.IDContrat, Contrat.DateSignature, Contrat.CoutGlobal, Contrat.DateDebut, Contrat.DateFin, Entreprise_Cliente.IDEntre AS IDEntre, Entreprise_Cliente.Nom AS NomEntreprise, Personne.Nom AS NomContact, Personne.IDPersonne AS IDPersonne ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+        $query = $db -> prepare("SELECT Contrat.IDContrat, Contrat.DateSignature, Contrat.CoutGlobal, 
+                                Contrat.DateDebut, Contrat.DateFin, Entreprise_Cliente.IDEntre AS IDEntre, 
+                                Entreprise_Cliente.Nom AS NomEntreprise, Personne.Nom AS NomContact, 
+                                Personne.IDPersonne AS IDPersonne                                               ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
                                 FROM Contrat
                                 INNER JOIN Entreprise_Cliente ON Entreprise_Cliente.IDEntre = Contrat.IDEntre
                                 INNER JOIN Contact ON Contact.IDPersonne = Contrat.IDPersonne 
@@ -66,11 +72,11 @@
         return $OneContrat;
     }
 
-    function updateContrat($db,$IDContrat,$DateSignature,$CoutGlobal,$DateFin,$DateDebut,$Contact,$Entreprise){
-        #echo "UPDATE Contrat SET $DateSignature = $DateSignature, $CoutGlobal=$CoutGlobal, $DateDebut = $DateDebut, $DateFin = $DateFin , $Contact = $Contact, $Entreprise = $Entreprise WHERE $IDContrat = $IDContrat ";
-        
+    function updateContrat($db,$IDContrat,$DateSignature,$CoutGlobal,$DateFin,$DateDebut,$Contact,$Entreprise){        
         $query = $db -> prepare("UPDATE Contrat
-                                SET DateSignature = :DateSignature, CoutGlobal=:CoutGlobal, DateDebut = :DateDebut, DateFin = :DateFin , IDPersonne = :IDPersonne, IDEntre = :IDEntre
+                                SET DateSignature = :DateSignature, CoutGlobal=:CoutGlobal, 
+                                DateDebut = :DateDebut, DateFin = :DateFin , 
+                                IDPersonne = :IDPersonne, IDEntre = :IDEntre
                                 WHERE IDContrat = :IDContrat ");
         $query -> execute([
         'IDContrat' => $IDContrat,
@@ -384,7 +390,8 @@
     }
 
     function getInterval($db,$email){ ##fonction avec un nom clair, recuperer un seul product et on recoit la base de donnees et id qu'on veut recup
-        $query = $db -> prepare("SELECT dateheurecreation, now(), TIMESTAMPDIFF(SECOND,dateheurecreation,now()) AS 'interval' ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
+        $query = $db -> prepare("SELECT dateheurecreation, now(), 
+                                TIMESTAMPDIFF(SECOND,dateheurecreation,now()) AS 'interval' ##query variable dans lequelle je vais faire une requete sql, preparer la requete sql, va stocker une requete SELECT selectionne les elements dans la base de données
                                 FROM Personne  ## FROM dans la table ..
                                 WHERE Email = :email"); ## instruction quand id est egale aux idproducts, :id = peut etre modifier. les paramètres principaux SQL doivent etre en maj
         $query -> execute([

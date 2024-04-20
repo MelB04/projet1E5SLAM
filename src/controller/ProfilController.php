@@ -41,14 +41,14 @@ function profilController($twig, $db){
         if ($derniereequipe['IDEquipe'] != NULL){
             $membreequipe = getMembreGroupe($db,$derniereequipe['IDEquipe']);
             #var_dump($membreequipe);
-
             $dernierprojet=getdernierProjet($db, $derniereequipe['IDEquipe']);
             #var_dump($dernierprojet);
 
-            $tachesprojet=gettacheprojet($db, $dernierprojet['IDModule']);
-            #var_dump($tachesprojet);
+            if ($dernierprojet != false){
+                $tachesprojet=gettacheprojet($db, $dernierprojet['IDModule']);
+                #var_dump($tachesprojet);
+            }
         }
-  
     }
 
     echo $twig->render('profil.html.twig', [ 
