@@ -30,7 +30,7 @@
 
     <form action="index.php?page=delDev" method="POST">
         <div class="mb-3">
-            <label for="ContratLabel" class="form-label">Choisir plusieurs Devéloppeurs à supprimer :</label>
+            <label for="ContratLabel" class="form-label">Choisir plusieurs Développeurs à supprimer :</label>
             <div>
                 {% for dev in devs %}
                     <input type="checkbox" name="dev[]" value={{ dev.IDPersonne }}>{{ dev.NomPersonne }} {{ dev.PrenomPersonne }}<br>

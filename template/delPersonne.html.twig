@@ -7,13 +7,13 @@
 {% block content %}
 <div class="bg-light rounded px-3 py-3">
     <div class="container">
-        <h1>Supprimer une ou plusieurs Personne</h1>
+        <h1>Supprimer une ou plusieurs Personne(s)</h1>
     </div>
 </div>
 <div class="container mb-5">
     <form action="index.php?page=delPersonne" method="POST">
         <div class="mb-3">
-            <label for="PersonneLabel" class="form-label">Choisir une Contrat à supprimer :</label>
+            <label for="PersonneLabel" class="form-label">Choisir une personne à supprimer :</label>
             <div>
                 <select class="form-select" name="personne" size="1">                    
                     {% for personne in personnes %}
