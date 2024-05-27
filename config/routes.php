@@ -7,7 +7,7 @@
 
         'delContrat' => 'delContratController:2',
         'updateContrat' => 'updateContratController:2',
-        "addEntreprise" => "addEntrepriseController:2",
+        "addEntreprise" => "addEntrepriseController:0",
         'addContact' => 'addContactController:2',
         "updateEntreprise" => "UpdateEntrepriseController:2",
         "addIndice" => "addIndiceController:2",
@@ -16,6 +16,7 @@
         "updateContact" => "UpdateContactController:2",
         "addOutil"=> "addOutilController:2",
         "updateOutil"  => "updateOutilController:2",
+        "deleteentreprise" => "DeleteEntrepriseController:2",
 
 
         "deconnexion" => "deconnexionController:0",
@@ -26,5 +27,5 @@
         'updatePersonne' => 'updatePersonneController:0',
         'delPersonne' => 'delPersonneController:0',
 
-        ]; //fin de tableau
+        ];
 ?>
